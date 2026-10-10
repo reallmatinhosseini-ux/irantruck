@@ -30,6 +30,7 @@
     root.classList.remove("motion");
     $$(".process__list li").forEach((li) => li.classList.add("is-in"));
   }
+  video();
   nav();
   menu();
   anchors();
@@ -37,6 +38,28 @@
   form();
 
   /* ---------------- helpers ---------------- */
+  function fmt(n) {
+    return n.toLocaleString(window.ITG_LANG === "fa" ? "fa-IR" : "en-US");
+  }
+
+  function video() {
+    const v = $(".hero__video"), btn = $("[data-video-toggle]");
+    if (!v) return;
+    const msg = window.ITG_MSG || {};
+    const sync = () => {
+      btn.classList.toggle("is-paused", v.paused);
+      btn.setAttribute("aria-label", v.paused ? msg.play || "Play video" : msg.pause || "Pause video");
+    };
+    if (reduced) v.pause(); else v.play().catch(() => {});
+    btn.addEventListener("click", () => { v.paused ? v.play() : v.pause(); });
+    v.addEventListener("play", sync); v.addEventListener("pause", sync);
+    // pause when the hero is off-screen to save battery
+    if ("IntersectionObserver" in window) {
+      new IntersectionObserver(([e]) => { if (reduced || btn.dataset.user === "off") return; e.isIntersecting ? v.play().catch(() => {}) : v.pause(); }).observe(v);
+    }
+    btn.addEventListener("click", () => { btn.dataset.user = v.paused ? "off" : "on"; });
+    sync();
+  }
   function splitWords(el) {
     const words = [];
     const walk = (node, into) => {
@@ -95,8 +118,12 @@
       .to(".loader__line i", { scaleX: 1, duration: 1.4, ease: "power2.inOut" }, 0.2)
       .from(".loader__word", { autoAlpha: 0, letterSpacing: "0.8em", duration: 1.2, ease: "power3.out" }, 0.3);
 
-    const img = $(".hero__media img");
-    const ready = img.decode ? img.decode().catch(() => {}) : Promise.resolve();
+    const vid = $(".hero__video");
+    const ready = new Promise((r) => {
+      if (!vid || vid.readyState >= 2) return r();
+      vid.addEventListener("loadeddata", r, { once: true });
+      setTimeout(r, 2500);
+    });
     Promise.all([ready, new Promise((r) => load.eventCallback("onComplete", r))]).then(() => {
       gsap.timeline({ onComplete: () => { $(".loader")?.remove(); ScrollTrigger.refresh(); } })
         .to(".loader__inner", { autoAlpha: 0, y: -24, duration: 0.5, ease: "power2.in" })
@@ -153,7 +180,7 @@
     // Counters
     $$(".count").forEach((el) => {
       const o = { v: 0 };
-      gsap.to(o, { v: +el.dataset.to, duration: 2.4, ease: "expo.out", scrollTrigger: { trigger: el, start: "top 92%" }, onUpdate: () => (el.textContent = Math.round(o.v)) });
+      gsap.to(o, { v: +el.dataset.to, duration: 2.4, ease: "expo.out", scrollTrigger: { trigger: el, start: "top 92%" }, onUpdate: () => (el.textContent = fmt(Math.round(o.v))) });
     });
 
     // LEO: the photograph expands to fill the screen
@@ -184,6 +211,28 @@
     mm.add("(max-width: 1000px)", () => {
       $$(".journey__intro, .journey__card, .pillar").forEach((el) => gsap.from(el, { y: 60, autoAlpha: 0, duration: 1.2, ease: "expo.out", scrollTrigger: { trigger: el, start: "top 88%" } }));
     });
+
+    // Route map: the line draws itself and a light travels from Shandong to Mashhad
+    const route = $(".map__route");
+    if (route) {
+      const len = route.getTotalLength();
+      const runner = $(".map__runner"), glow = $(".map__runner-glow");
+      route.style.strokeDasharray = `${len} ${len}`;
+      route.style.strokeDashoffset = `${-len}`;
+      const st = { p: 0 };
+      gsap.to(st, {
+        p: 1, ease: "none",
+        scrollTrigger: { trigger: ".route__map", start: "top 75%", end: "bottom 35%", scrub: 1 },
+        onUpdate: () => {
+          // travel from Shandong (end of path) towards Mashhad (start)
+          const at = route.getPointAtLength(len * (1 - st.p));
+          route.style.strokeDashoffset = `${-len * (1 - st.p)}`; // visible: [len·(1−p), len]
+          runner.setAttribute("cx", at.x); runner.setAttribute("cy", at.y);
+          glow.setAttribute("cx", at.x); glow.setAttribute("cy", at.y);
+        },
+      });
+      gsap.from(".map__pin", { scale: 0, transformOrigin: "50% 50%", duration: 1, ease: "back.out(2)", stagger: 0.2, scrollTrigger: { trigger: ".route__map", start: "top 75%" } });
+    }
 
     // Feature products
     $$(".feature__studio img").forEach((img) => gsap.fromTo(img, { yPercent: 8 }, { yPercent: -8, ease: "none", scrollTrigger: { trigger: img.parentElement, start: "top bottom", end: "bottom top", scrub: true } }));
@@ -222,9 +271,9 @@
     });
 
     // Hero light parallax
-    const hx = gsap.quickTo(".hero__media img", "x", { duration: 1.6, ease: "power3" });
-    const hy = gsap.quickTo(".hero__media img", "y", { duration: 1.6, ease: "power3" });
-    gsap.set(".hero__media img", { scale: 1.06 });
+    const hx = gsap.quickTo(".hero__video", "x", { duration: 1.6, ease: "power3" });
+    const hy = gsap.quickTo(".hero__video", "y", { duration: 1.6, ease: "power3" });
+    gsap.set(".hero__video", { scale: 1.06 });
     $(".hero").addEventListener("mousemove", (e) => { hx((e.clientX / innerWidth - 0.5) * -34); hy((e.clientY / innerHeight - 0.5) * -20); });
 
     // Magnetic
@@ -333,10 +382,10 @@
         (el.closest(".field") || el.closest(".consent")).classList.toggle("is-error", bad);
         if (bad && !first) first = el;
       });
-      if (first) { status.textContent = "Please complete the highlighted fields."; first.focus(); return; }
+      if (first) { status.textContent = (window.ITG_MSG || {}).error || "Please complete the highlighted fields."; first.focus(); return; }
       const d = Object.fromEntries(new FormData(f));
       location.href = `mailto:info@iran-truck.com?subject=${encodeURIComponent("Enquiry — " + d.name)}&body=${encodeURIComponent(`${d.message}\n\n${d.name}\n${d.reach}`)}`;
-      status.textContent = "Thank you. Your email app will open with the message ready.";
+      status.textContent = (window.ITG_MSG || {}).sent || "Thank you. Your email app will open with the message ready.";
     });
     $$("input, textarea", f).forEach((el) => el.addEventListener("input", () => (el.closest(".field") || el.closest(".consent"))?.classList.remove("is-error")));
   }

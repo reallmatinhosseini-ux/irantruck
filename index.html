@@ -1,20 +1,26 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Iran Truck Trading Group — Official Representative of LEO in Iran</title>
   <meta name="description" content="Genuine parts for heavy trucks and commercial vehicles. Official representative of LEO in Iran. Over twenty-five years. Mashhad.">
   <meta name="theme-color" content="#0a0a0b">
+  <meta property="og:title" content="Iran Truck Trading Group">
+  <meta property="og:description" content="Genuine parts. Enduring trust. Official representative of LEO in Iran.">
+  <meta property="og:image" content="images/lx-hero.jpg">
   <link rel="icon" href="images/logo-crop.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600&family=Instrument+Serif:ital@0;1&family=Vazirmatn:wght@200;300;400;500;600&display=swap" rel="stylesheet">
   <link rel="preload" as="image" href="images/lx-hero.jpg">
   <link rel="stylesheet" href="css/style.css">
   <script>
     (function (d) {
       d.classList.add("js");
+      var lang = new URLSearchParams(location.search).get("lang");
+      try { lang = lang || localStorage.getItem("itg-lang"); } catch (e) {}
+      if (lang === "fa") { d.lang = "fa"; d.dir = "rtl"; }
       if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
         d.classList.add("motion");
         setTimeout(function () { if (!window.__motionReady) d.classList.remove("motion"); }, 4000);
@@ -23,7 +29,7 @@
   </script>
 </head>
 <body>
-  <a class="skip" href="#main">Skip to content</a>
+  <a class="skip" href="#main" data-i18n="skip">Skip to content</a>
 
   <div class="loader" aria-hidden="true">
     <div class="loader__inner">
@@ -34,32 +40,36 @@
   </div>
 
   <div class="grain" aria-hidden="true"></div>
-  <div class="cursor" aria-hidden="true"><span>View</span></div>
+  <div class="cursor" aria-hidden="true"><span data-i18n="view">View</span></div>
   <div class="hover-img" aria-hidden="true"><div class="hover-img__inner"></div></div>
 
   <header class="nav">
-    <a href="#top" class="nav__logo" aria-label="Iran Truck Trading Group — home"><img src="images/logo-crop.png" alt="" width="48" height="36"></a>
+    <a href="#top" class="nav__logo" aria-label="Iran Truck Trading Group"><img src="images/logo-crop.png" alt="" width="48" height="36"></a>
     <nav class="nav__pill" aria-label="Main">
-      <a href="#story">Story</a>
+      <a href="#story" data-i18n="nav.story">Story</a>
       <a href="#leo">LEO</a>
-      <a href="#collection">Collection</a>
-      <a href="#values">Values</a>
-      <a href="#contact">Contact</a>
+      <a href="#collection" data-i18n="nav.collection">Collection</a>
+      <a href="#values" data-i18n="nav.values">Values</a>
+      <a href="#contact" data-i18n="nav.contact">Contact</a>
     </nav>
-    <a href="#contact" class="nav__cta magnetic"><span>Get in touch</span></a>
-    <button class="nav__burger" aria-label="Open menu" aria-expanded="false" aria-controls="menu"><span></span><span></span></button>
+    <div class="nav__right">
+      <button class="lang magnetic" data-lang-toggle aria-label="Switch language"><span class="lang__on">EN</span><span class="lang__sep">/</span><span class="lang__off">فا</span></button>
+      <a href="#contact" class="nav__cta magnetic"><span data-i18n="nav.cta">Get in touch</span></a>
+    </div>
+    <button class="nav__burger" aria-label="Menu" aria-expanded="false" aria-controls="menu"><span></span><span></span></button>
   </header>
 
   <div class="menu" id="menu" aria-hidden="true">
     <nav class="menu__links">
-      <a href="#story"><small>01</small>Story</a>
+      <a href="#story"><small>01</small><span data-i18n="nav.story">Story</span></a>
       <a href="#leo"><small>02</small>LEO</a>
-      <a href="#collection"><small>03</small>Collection</a>
-      <a href="#values"><small>04</small>Values</a>
-      <a href="#contact"><small>05</small>Contact</a>
+      <a href="#collection"><small>03</small><span data-i18n="nav.collection">Collection</span></a>
+      <a href="#values"><small>04</small><span data-i18n="nav.values">Values</span></a>
+      <a href="#contact"><small>05</small><span data-i18n="nav.contact">Contact</span></a>
     </nav>
     <div class="menu__foot">
-      <a href="tel:+985133921186">+98 51 3392 1186</a>
+      <button class="lang lang--menu" data-lang-toggle><span class="lang__on">EN</span><span class="lang__sep">/</span><span class="lang__off">فا</span></button>
+      <a href="tel:+985133921186" dir="ltr">+98 51 3392 1186</a>
       <a href="mailto:info@iran-truck.com">info@iran-truck.com</a>
     </div>
   </div>
@@ -68,40 +78,45 @@
 
     <!-- HERO -->
     <section class="hero" id="top">
-      <div class="hero__media" aria-hidden="true"><img src="images/lx-hero.jpg" alt=""></div>
+      <div class="hero__media" aria-hidden="true">
+        <video class="hero__video" autoplay muted loop playsinline preload="auto" poster="images/lx-hero.jpg">
+          <source src="media/hero.mp4" type="video/mp4">
+        </video>
+      </div>
       <div class="hero__veil" aria-hidden="true"></div>
 
       <div class="hero__top wrap">
-        <p class="kicker hero__fade">Official representative of LEO in Iran</p>
-        <p class="kicker hero__fade hide-sm">Mashhad · 25+ years</p>
+        <p class="kicker hero__fade" data-i18n="hero.k1">Official representative of LEO in Iran</p>
+        <p class="kicker hero__fade hide-sm" data-i18n="hero.k2">Mashhad · 25+ years</p>
       </div>
 
       <div class="wrap hero__main">
-        <h1 class="hero__title">
+        <h1 class="hero__title" data-i18n="hero.title">
           <span class="row"><span class="w">Genuine</span> <span class="w">parts.</span></span>
           <span class="row"><span class="w"><em>Enduring</em></span> <span class="w"><em>trust.</em></span></span>
         </h1>
         <div class="hero__bottom">
-          <p class="hero__lead hero__fade">Spare parts for heavy trucks and commercial vehicles — supplied with care by a family business that has served Iran’s roads for a quarter of a century.</p>
+          <p class="hero__lead hero__fade" data-i18n="hero.lead">Spare parts for heavy trucks and commercial vehicles — supplied with care by a family business that has served Iran’s roads for a quarter of a century.</p>
           <div class="hero__actions hero__fade">
-            <a href="#contact" class="btn btn--light magnetic"><span>Speak with us</span></a>
-            <a href="#story" class="scroll-cue"><i></i><span>Discover</span></a>
+            <a href="#contact" class="btn btn--light magnetic"><span data-i18n="hero.cta">Speak with us</span></a>
+            <a href="#story" class="scroll-cue"><i></i><span data-i18n="hero.discover">Discover</span></a>
           </div>
         </div>
       </div>
+      <button class="hero__sound" aria-label="Pause video" data-video-toggle><i></i><i></i></button>
     </section>
 
     <!-- STORY -->
     <section class="statement" id="story">
       <div class="wrap">
-        <p class="kicker reveal">( 01 ) &nbsp;Our story</p>
-        <p class="statement__text js-fill">For more than twenty-five years, Iran Truck Trading Group has supplied the parts that keep heavy vehicles moving — guided by one belief: <em>a part is only as good as the people who stand behind it.</em></p>
+        <p class="kicker reveal" data-i18n="story.k">( 01 ) &nbsp;Our story</p>
+        <p class="statement__text js-fill" data-i18n="story.text">For more than twenty-five years, Iran Truck Trading Group has supplied the parts that keep heavy vehicles moving — guided by one belief: <em>a part is only as good as the people who stand behind it.</em></p>
       </div>
       <div class="wrap figures">
-        <div class="figure reveal"><span class="figure__num"><b class="count" data-to="25">25</b>+</span><span class="figure__label">Years in the heavy-vehicle industry</span></div>
-        <div class="figure reveal"><span class="figure__num">LEO</span><span class="figure__label">Official representative in Iran</span></div>
-        <div class="figure reveal"><span class="figure__num"><b class="count" data-to="6">6</b>+</span><span class="figure__label">Leading truck &amp; engine makes</span></div>
-        <div class="figure reveal"><span class="figure__num"><em>One</em></span><span class="figure__label">Family. One standard of service.</span></div>
+        <div class="figure reveal"><span class="figure__num"><b class="count" data-to="25">25</b>+</span><span class="figure__label" data-i18n="fig.1">Years in the heavy-vehicle industry</span></div>
+        <div class="figure reveal"><span class="figure__num">LEO</span><span class="figure__label" data-i18n="fig.2">Official representative in Iran</span></div>
+        <div class="figure reveal"><span class="figure__num"><b class="count" data-to="6">6</b>+</span><span class="figure__label" data-i18n="fig.3">Leading truck &amp; engine makes</span></div>
+        <div class="figure reveal"><span class="figure__num" data-i18n="fig.4n"><em>One</em></span><span class="figure__label" data-i18n="fig.4">Family. One standard of service.</span></div>
       </div>
     </section>
 
@@ -110,48 +125,90 @@
       <div class="wrap split__grid">
         <figure class="split__img clip" data-cursor><img src="images/store-team.jpg" alt="The Iran Truck branch in Mashhad" loading="lazy"></figure>
         <div class="split__text">
-          <p class="kicker reveal">The family behind the name</p>
-          <h2 class="title js-split">Built on <em>relationships,</em> not transactions.</h2>
-          <p class="body reveal">We serve fleet owners, workshops and logistics companies across Iran from our home in Mashhad’s Torogh Industrial Zone. Every customer speaks with people who know the trade — and who will still be here long after the order is delivered.</p>
+          <p class="kicker reveal" data-i18n="fam.k">The family behind the name</p>
+          <h2 class="title js-split" data-i18n="fam.title">Built on <em>relationships,</em> not transactions.</h2>
+          <p class="body reveal" data-i18n="fam.body">We serve fleet owners, workshops and logistics companies across Iran from our home in Mashhad’s Torogh Industrial Zone. Every customer speaks with people who know the trade — and who will still be here long after the order is delivered.</p>
           <ul class="people">
-            <li class="reveal"><span class="people__name">Mohsen Hosseini</span><span class="people__role">Founder &amp; Chief Executive</span></li>
-            <li class="reveal"><span class="people__name">Ehsan Hosseini</span><span class="people__role">Chief Marketing Officer</span></li>
+            <li class="reveal"><span class="people__name" data-i18n="p1.n">Mohsen Hosseini</span><span class="people__role" data-i18n="p1.r">Founder &amp; Chief Executive</span></li>
+            <li class="reveal"><span class="people__name" data-i18n="p2.n">Ehsan Hosseini</span><span class="people__role" data-i18n="p2.r">Chief Marketing Officer</span></li>
           </ul>
         </div>
       </div>
     </section>
 
     <!-- LEO EXPAND -->
-    <section class="expand" id="leo" aria-label="Our partnership with LEO">
+    <section class="expand" id="leo" aria-label="LEO">
       <div class="expand__pin">
         <div class="expand__frame"><img src="images/team-expo.jpg" alt="The Iran Truck team with LEO at an international automotive exhibition"></div>
         <div class="expand__veil"></div>
         <div class="expand__copy wrap">
-          <p class="kicker">( 02 ) &nbsp;Partnership</p>
-          <h2 class="expand__title">The official representative<br>of <em>LEO</em> in Iran.</h2>
+          <p class="kicker" data-i18n="leo.k">( 02 ) &nbsp;Partnership</p>
+          <h2 class="expand__title" data-i18n="leo.title">The official representative<br>of <em>LEO</em> in Iran.</h2>
         </div>
-        <p class="expand__cap">With our partners at LEO — international automotive exhibition</p>
+        <p class="expand__cap" data-i18n="leo.cap">With our partners at LEO — international automotive exhibition</p>
       </div>
     </section>
 
-    <!-- LEO JOURNEY (horizontal) -->
-    <section class="journey" aria-label="The partnership in pictures">
+    <!-- LEO JOURNEY -->
+    <section class="journey" aria-label="LEO">
       <div class="journey__pin">
         <div class="journey__track">
           <div class="journey__intro">
-            <p class="kicker">A partnership built in person</p>
-            <h3 class="title title--sm">Years of visits, conversations and <em>mutual trust.</em></h3>
-            <p class="body">For our customers it means original LEO products, a direct line to the manufacturer, and support that continues after the sale.</p>
+            <p class="kicker" data-i18n="jr.k">A partnership built in person</p>
+            <h3 class="title title--sm" data-i18n="jr.title">Years of visits, conversations and <em>mutual trust.</em></h3>
+            <p class="body" data-i18n="jr.body">For our customers it means original LEO products, a direct line to the manufacturer, and support that continues after the sale.</p>
           </div>
-          <figure class="journey__card" data-cursor><div class="journey__img"><img src="images/factory.jpg" alt="The LEO facility in Shandong" loading="lazy"></div><figcaption><span>i.</span>The LEO facility, Shandong</figcaption></figure>
-          <figure class="journey__card journey__card--tall" data-cursor><div class="journey__img"><img src="images/team-office.jpg" alt="Meeting with partners" loading="lazy"></div><figcaption><span>ii.</span>Meeting our partners</figcaption></figure>
-          <figure class="journey__card journey__card--studio" data-cursor><div class="journey__img"><img src="images/prod-kit.jpg" alt="LEO cylinder kit" loading="lazy"></div><figcaption><span>iii.</span>The LEO cylinder kit</figcaption></figure>
-          <figure class="journey__card" data-cursor><div class="journey__img"><img src="images/store-front.jpg" alt="Iran Truck building in Mashhad" loading="lazy"></div><figcaption><span>iv.</span>Home — Mashhad</figcaption></figure>
+          <figure class="journey__card" data-cursor><div class="journey__img"><img src="images/factory.jpg" alt="The LEO facility in Shandong" loading="lazy"></div><figcaption><span>i.</span><b data-i18n="jr.c1">The LEO facility, Shandong</b></figcaption></figure>
+          <figure class="journey__card journey__card--tall" data-cursor><div class="journey__img"><img src="images/team-office.jpg" alt="Meeting with partners" loading="lazy"></div><figcaption><span>ii.</span><b data-i18n="jr.c2">Meeting our partners</b></figcaption></figure>
+          <figure class="journey__card journey__card--studio" data-cursor><div class="journey__img"><img src="images/prod-kit.jpg" alt="LEO cylinder kit" loading="lazy"></div><figcaption><span>iii.</span><b data-i18n="jr.c3">The LEO cylinder kit</b></figcaption></figure>
+          <figure class="journey__card" data-cursor><div class="journey__img"><img src="images/store-front.jpg" alt="Iran Truck building in Mashhad" loading="lazy"></div><figcaption><span>iv.</span><b data-i18n="jr.c4">Home — Mashhad</b></figcaption></figure>
           <div class="journey__end">
-            <p class="pillar"><b>Original.</b> Genuine products through the official channel.</p>
-            <p class="pillar"><b>Direct.</b> Technical answers from the people who make the part.</p>
-            <p class="pillar"><b>Lasting.</b> After-sales support on everything we supply.</p>
+            <p class="pillar" data-i18n="jr.p1"><b>Original.</b> Genuine products through the official channel.</p>
+            <p class="pillar" data-i18n="jr.p2"><b>Direct.</b> Technical answers from the people who make the part.</p>
+            <p class="pillar" data-i18n="jr.p3"><b>Lasting.</b> After-sales support on everything we supply.</p>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ROUTE MAP -->
+    <section class="route" aria-label="Shandong to Mashhad">
+      <div class="wrap route__grid">
+        <div class="route__text">
+          <p class="kicker reveal" data-i18n="rt.k">From factory to fleet</p>
+          <h2 class="title js-split" data-i18n="rt.title">Shandong to <em>Mashhad.</em></h2>
+          <p class="body reveal" data-i18n="rt.body">LEO parts travel from the manufacturer in Shandong, China, to us in Mashhad — and from there to fleets and workshops across Iran.</p>
+          <dl class="route__facts">
+            <div class="reveal"><dt><span data-i18n="rt.f1n">≈ <b class="count" data-to="5100">5,100</b> km</span></dt><dd data-i18n="rt.f1">Shandong → Mashhad, as the crow flies</dd></div>
+            <div class="reveal"><dt data-i18n="rt.f2n">Official</dt><dd data-i18n="rt.f2">One channel, from manufacturer to you</dd></div>
+            <div class="reveal"><dt data-i18n="rt.f3n">Nationwide</dt><dd data-i18n="rt.f3">Serving customers across Iran</dd></div>
+          </dl>
+        </div>
+        <div class="route__map reveal" aria-hidden="true">
+          <svg viewBox="0 0 1000 560" class="map">
+            <defs>
+              <pattern id="dots" width="14" height="14" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.1" fill="rgba(236,233,227,.13)"/></pattern>
+              <linearGradient id="routeGrad" x1="0" x2="1"><stop offset="0" stop-color="#8a8a8d"/><stop offset=".5" stop-color="#ffffff"/><stop offset="1" stop-color="#9a9a9d"/></linearGradient>
+              <radialGradient id="glow"><stop offset="0" stop-color="#fff" stop-opacity=".9"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
+            </defs>
+            <rect width="1000" height="560" fill="url(#dots)"/>
+            <g class="map__grid" stroke="rgba(236,233,227,.07)" stroke-width="1">
+              <line x1="0" y1="140" x2="1000" y2="140"/><line x1="0" y1="280" x2="1000" y2="280"/><line x1="0" y1="420" x2="1000" y2="420"/>
+              <line x1="250" y1="0" x2="250" y2="560"/><line x1="500" y1="0" x2="500" y2="560"/><line x1="750" y1="0" x2="750" y2="560"/>
+            </g>
+            <path class="map__route-bg" d="M190 300 Q 530 40 860 290" fill="none" stroke="rgba(236,233,227,.12)" stroke-width="1.5" stroke-dasharray="4 8"/>
+            <path class="map__route" d="M190 300 Q 530 40 860 290" fill="none" stroke="url(#routeGrad)" stroke-width="2"/>
+            <circle class="map__runner-glow" r="22" fill="url(#glow)" cx="190" cy="300"/>
+            <circle class="map__runner" r="4" fill="#fff" cx="190" cy="300"/>
+            <g class="map__pin" transform="translate(190 300)"><circle r="26" class="map__pulse"/><circle r="6" fill="#ece9e3"/></g>
+            <g class="map__pin" transform="translate(860 290)"><circle r="26" class="map__pulse"/><circle r="6" fill="#ece9e3"/></g>
+            <text x="190" y="350" text-anchor="middle" class="map__label" data-i18n="rt.m1">MASHHAD</text>
+            <text x="190" y="372" text-anchor="middle" class="map__sub" data-i18n="rt.m1s">Iran Truck · HQ</text>
+            <text x="860" y="340" text-anchor="middle" class="map__label" data-i18n="rt.m2">SHANDONG</text>
+            <text x="860" y="362" text-anchor="middle" class="map__sub" data-i18n="rt.m2s">LEO · Manufacturer</text>
+            <text x="190" y="80" class="map__coord">36.3° N · 59.6° E</text>
+            <text x="860" y="80" text-anchor="end" class="map__coord">36.8° N · 118.0° E</text>
+          </svg>
         </div>
       </div>
     </section>
@@ -160,35 +217,33 @@
     <section class="collection" id="collection">
       <div class="wrap">
         <div class="section-head">
-          <p class="kicker reveal">( 03 ) &nbsp;Collection</p>
-          <h2 class="title js-split">What we <em>supply.</em></h2>
+          <p class="kicker reveal" data-i18n="col.k">( 03 ) &nbsp;Collection</p>
+          <h2 class="title js-split" data-i18n="col.title">What we <em>supply.</em></h2>
         </div>
-
         <div class="feature">
           <article class="feature__item reveal" data-cursor>
             <div class="feature__studio"><img src="images/prod-kit.jpg" alt="Cylinder combination kit" loading="lazy"></div>
-            <div class="feature__meta"><span class="kicker">Engine</span><h3>Cylinder Combination</h3><p>Matched liners, pistons, pins and rings for a complete rebuild.</p></div>
+            <div class="feature__meta"><span class="kicker" data-i18n="col.eng">Engine</span><h3 data-i18n="col.f1">Cylinder Combination</h3><p data-i18n="col.f1d">Matched liners, pistons, pins and rings for a complete rebuild.</p></div>
           </article>
           <article class="feature__item reveal" data-cursor>
             <div class="feature__studio"><img src="images/prod-rings.jpg" alt="Piston ring set" loading="lazy"></div>
-            <div class="feature__meta"><span class="kicker">Engine</span><h3>Piston Rings</h3><p>Precision sets for compression, oil control and long service life.</p></div>
+            <div class="feature__meta"><span class="kicker" data-i18n="col.eng">Engine</span><h3 data-i18n="col.f2">Piston Rings</h3><p data-i18n="col.f2d">Precision sets for compression, oil control and long service life.</p></div>
           </article>
         </div>
-
         <ul class="index-list">
-          <li class="reveal"><a href="#contact" data-img="images/lx-engine.jpg" data-product="Engine components"><span class="index-list__n">01</span><span class="index-list__name">Engine Components</span><span class="index-list__desc">Liners, pistons, rings, bearings</span><i>↗</i></a></li>
-          <li class="reveal"><a href="#contact" data-img="images/st-workshop.jpg" data-product="Brakes"><span class="index-list__n">02</span><span class="index-list__name">Brakes</span><span class="index-list__desc">Components for heavy vehicles</span><i>↗</i></a></li>
-          <li class="reveal"><a href="#contact" data-img="images/st-fleet.jpg" data-product="Suspension"><span class="index-list__n">03</span><span class="index-list__name">Suspension</span><span class="index-list__desc">For trucks and trailers</span><i>↗</i></a></li>
-          <li class="reveal"><a href="#contact" data-img="images/st-mechanic.jpg" data-product="Electrical systems"><span class="index-list__n">04</span><span class="index-list__name">Electrical Systems</span><span class="index-list__desc">Parts and components</span><i>↗</i></a></li>
-          <li class="reveal"><a href="#contact" data-img="images/st-warehouse.jpg" data-product="Accessories"><span class="index-list__n">05</span><span class="index-list__name">Accessories</span><span class="index-list__desc">For commercial vehicles</span><i>↗</i></a></li>
+          <li class="reveal"><a href="#contact" data-img="images/lx-engine.jpg" data-product="Engine components"><span class="index-list__n">01</span><span class="index-list__name" data-i18n="c1">Engine Components</span><span class="index-list__desc" data-i18n="c1d">Liners, pistons, rings, bearings</span><i>↗</i></a></li>
+          <li class="reveal"><a href="#contact" data-img="images/st-workshop.jpg" data-product="Brakes"><span class="index-list__n">02</span><span class="index-list__name" data-i18n="c2">Brakes</span><span class="index-list__desc" data-i18n="c2d">Components for heavy vehicles</span><i>↗</i></a></li>
+          <li class="reveal"><a href="#contact" data-img="images/st-fleet.jpg" data-product="Suspension"><span class="index-list__n">03</span><span class="index-list__name" data-i18n="c3">Suspension</span><span class="index-list__desc" data-i18n="c3d">For trucks and trailers</span><i>↗</i></a></li>
+          <li class="reveal"><a href="#contact" data-img="images/st-mechanic.jpg" data-product="Electrical systems"><span class="index-list__n">04</span><span class="index-list__name" data-i18n="c4">Electrical Systems</span><span class="index-list__desc" data-i18n="c4d">Parts and components</span><i>↗</i></a></li>
+          <li class="reveal"><a href="#contact" data-img="images/st-warehouse.jpg" data-product="Accessories"><span class="index-list__n">05</span><span class="index-list__name" data-i18n="c5">Accessories</span><span class="index-list__desc" data-i18n="c5d">For commercial vehicles</span><i>↗</i></a></li>
         </ul>
-        <p class="collection__note reveal">Looking for something specific? <a href="#contact" class="link">Ask us — we will source it.</a></p>
+        <p class="collection__note reveal" data-i18n="col.note">Looking for something specific? <a href="#contact" class="link">Ask us — we will source it.</a></p>
       </div>
     </section>
 
     <!-- MAKES -->
-    <section class="makes" aria-label="Makes we supply">
-      <p class="kicker makes__label">Parts for the makes Iran relies on</p>
+    <section class="makes" aria-label="Makes">
+      <p class="kicker makes__label" data-i18n="makes">Parts for the makes Iran relies on</p>
       <div class="makes__marquee">
         <div class="makes__track">
           <img src="images/brand-2.png" alt="Dongfeng"><img src="images/brand-1.png" alt="Sinotruk"><img src="images/brand-4.png" alt="Foton"><img src="images/brand-5.png" alt="Cummins"><img src="images/brand-6.png" alt="Yuchai"><img src="images/brand-3.png" alt="Amico">
@@ -197,29 +252,17 @@
       </div>
     </section>
 
-    <!-- VALUES (stacking) -->
+    <!-- VALUES -->
     <section class="values" id="values">
       <div class="wrap section-head">
-        <p class="kicker reveal">( 04 ) &nbsp;Values</p>
-        <h2 class="title js-split">Four promises we <em>keep.</em></h2>
+        <p class="kicker reveal" data-i18n="val.k">( 04 ) &nbsp;Values</p>
+        <h2 class="title js-split" data-i18n="val.title">Four promises we <em>keep.</em></h2>
       </div>
       <div class="wrap stack">
-        <article class="stack__card">
-          <div class="stack__img"><img src="images/st-fleet.jpg" alt="" loading="lazy"></div>
-          <div class="stack__body"><span class="stack__n">I</span><h3>Authenticity</h3><p>Original products from trusted manufacturers. Nothing goes into your engine that we would not stand behind.</p></div>
-        </article>
-        <article class="stack__card">
-          <div class="stack__img"><img src="images/st-mechanic.jpg" alt="" loading="lazy"></div>
-          <div class="stack__body"><span class="stack__n">II</span><h3>Expertise</h3><p>Specialists who help you identify the right part for your make, model and engine — before you buy.</p></div>
-        </article>
-        <article class="stack__card">
-          <div class="stack__img"><img src="images/st-warehouse.jpg" alt="" loading="lazy"></div>
-          <div class="stack__body"><span class="stack__n">III</span><h3>Availability</h3><p>Global sourcing relationships that help keep your fleet on the road and downtime to a minimum.</p></div>
-        </article>
-        <article class="stack__card">
-          <div class="stack__img"><img src="images/lx-road.jpg" alt="" loading="lazy"></div>
-          <div class="stack__body"><span class="stack__n">IV</span><h3>Partnership</h3><p>Long-term relationships. The same people, from the first question to after-sales support.</p></div>
-        </article>
+        <article class="stack__card"><div class="stack__img"><img src="images/st-fleet.jpg" alt="" loading="lazy"></div><div class="stack__body"><span class="stack__n">I</span><h3 data-i18n="v1">Authenticity</h3><p data-i18n="v1d">Original products from trusted manufacturers. Nothing goes into your engine that we would not stand behind.</p></div></article>
+        <article class="stack__card"><div class="stack__img"><img src="images/st-mechanic.jpg" alt="" loading="lazy"></div><div class="stack__body"><span class="stack__n">II</span><h3 data-i18n="v2">Expertise</h3><p data-i18n="v2d">Specialists who help you identify the right part for your make, model and engine — before you buy.</p></div></article>
+        <article class="stack__card"><div class="stack__img"><img src="images/st-warehouse.jpg" alt="" loading="lazy"></div><div class="stack__body"><span class="stack__n">III</span><h3 data-i18n="v3">Availability</h3><p data-i18n="v3d">Global sourcing relationships that help keep your fleet on the road and downtime to a minimum.</p></div></article>
+        <article class="stack__card"><div class="stack__img"><img src="images/lx-road.jpg" alt="" loading="lazy"></div><div class="stack__body"><span class="stack__n">IV</span><h3 data-i18n="v4">Partnership</h3><p data-i18n="v4d">Long-term relationships. The same people, from the first question to after-sales support.</p></div></article>
       </div>
     </section>
 
@@ -227,14 +270,14 @@
     <section class="process">
       <div class="wrap">
         <div class="section-head">
-          <p class="kicker reveal">( 05 ) &nbsp;How we work</p>
-          <h2 class="title js-split">Personal, from the <em>first message.</em></h2>
+          <p class="kicker reveal" data-i18n="pr.k">( 05 ) &nbsp;How we work</p>
+          <h2 class="title js-split" data-i18n="pr.title">Personal, from the <em>first message.</em></h2>
         </div>
         <ol class="process__list">
-          <li class="reveal"><span>01</span><h3>Tell us what you need</h3><p>Make, model, engine or part number — a photograph helps.</p></li>
-          <li class="reveal"><span>02</span><h3>We confirm the part</h3><p>Compatibility, availability and a clear price.</p></li>
-          <li class="reveal"><span>03</span><h3>Order &amp; delivery</h3><p>By phone, WhatsApp or email. We arrange the rest.</p></li>
-          <li class="reveal"><span>04</span><h3>Ongoing support</h3><p>The same team, long after delivery.</p></li>
+          <li class="reveal"><span>01</span><h3 data-i18n="s1">Tell us what you need</h3><p data-i18n="s1d">Make, model, engine or part number — a photograph helps.</p></li>
+          <li class="reveal"><span>02</span><h3 data-i18n="s2">We confirm the part</h3><p data-i18n="s2d">Compatibility, availability and a clear price.</p></li>
+          <li class="reveal"><span>03</span><h3 data-i18n="s3">Order &amp; delivery</h3><p data-i18n="s3d">By phone, WhatsApp or email. We arrange the rest.</p></li>
+          <li class="reveal"><span>04</span><h3 data-i18n="s4">Ongoing support</h3><p data-i18n="s4d">The same team, long after delivery.</p></li>
         </ol>
       </div>
     </section>
@@ -243,14 +286,14 @@
     <section class="faq">
       <div class="wrap faq__grid">
         <div>
-          <p class="kicker reveal">( 06 ) &nbsp;Questions</p>
-          <h2 class="title title--sm js-split">Frequently <em>asked.</em></h2>
+          <p class="kicker reveal" data-i18n="fq.k">( 06 ) &nbsp;Questions</p>
+          <h2 class="title title--sm js-split" data-i18n="fq.title">Frequently <em>asked.</em></h2>
         </div>
         <div class="faq__list">
-          <details class="qa reveal"><summary><span>What products do you offer?</span><i></i></summary><div class="qa__a"><p>Heavy truck spare parts, including engine components, brakes, suspension, electrical systems and accessories for trucks and commercial vehicles.</p></div></details>
-          <details class="qa reveal"><summary><span>Can you advise me on the part I need?</span><i></i></summary><div class="qa__a"><p>Absolutely. Our specialists help customers select compatible, high-quality parts for any truck make or model.</p></div></details>
-          <details class="qa reveal"><summary><span>Are you the official representative of LEO in Iran?</span><i></i></summary><div class="qa__a"><p>Yes. Iran Truck Trading Group is the official representative of LEO in Iran, offering original products and trusted after-sales support.</p></div></details>
-          <details class="qa reveal"><summary><span>How do I place an order?</span><i></i></summary><div class="qa__a"><p>Contact us by phone, WhatsApp, email or through the form below. We will guide you through availability, pricing and ordering.</p></div></details>
+          <details class="qa reveal"><summary><span data-i18n="q1">What products do you offer?</span><i></i></summary><div class="qa__a"><p data-i18n="a1">Heavy truck spare parts, including engine components, brakes, suspension, electrical systems and accessories for trucks and commercial vehicles.</p></div></details>
+          <details class="qa reveal"><summary><span data-i18n="q2">Can you advise me on the part I need?</span><i></i></summary><div class="qa__a"><p data-i18n="a2">Absolutely. Our specialists help customers select compatible, high-quality parts for any truck make or model.</p></div></details>
+          <details class="qa reveal"><summary><span data-i18n="q3">Are you the official representative of LEO in Iran?</span><i></i></summary><div class="qa__a"><p data-i18n="a3">Yes. Iran Truck Trading Group is the official representative of LEO in Iran, offering original products and trusted after-sales support.</p></div></details>
+          <details class="qa reveal"><summary><span data-i18n="q4">How do I place an order?</span><i></i></summary><div class="qa__a"><p data-i18n="a4">Contact us by phone, WhatsApp, email or through the form below. We will guide you through availability, pricing and ordering.</p></div></details>
         </div>
       </div>
     </section>
@@ -259,24 +302,22 @@
     <section class="contact" id="contact">
       <div class="contact__bg" aria-hidden="true"><img src="images/lx-contact.jpg" alt="" loading="lazy"></div>
       <div class="wrap contact__inner">
-        <p class="kicker reveal">( 07 ) &nbsp;Contact</p>
-        <h2 class="contact__title js-split">Let’s <em>talk.</em></h2>
-
+        <p class="kicker reveal" data-i18n="ct.k">( 07 ) &nbsp;Contact</p>
+        <h2 class="contact__title js-split" data-i18n="ct.title">Let’s <em>talk.</em></h2>
         <div class="contact__grid">
           <div class="contact__direct">
-            <a href="tel:+985133921186" class="big-link reveal"><small>Office</small><span>+98 51 3392 1186</span></a>
-            <a href="https://wa.me/989155072143" target="_blank" rel="noopener" class="big-link reveal"><small>WhatsApp</small><span>+98 915 507 2143</span></a>
-            <a href="mailto:info@iran-truck.com" class="big-link reveal"><small>Email</small><span>info@iran-truck.com</span></a>
-            <address class="reveal"><small>Visit</small>No. 42, Pisheh 18th Street, Torogh Industrial Zone,<br>Mashhad, Iran — 9165919142</address>
+            <a href="tel:+985133921186" class="big-link reveal"><small data-i18n="ct.office">Office</small><span dir="ltr">+98 51 3392 1186</span></a>
+            <a href="https://wa.me/989155072143" target="_blank" rel="noopener" class="big-link reveal"><small data-i18n="ct.wa">WhatsApp</small><span dir="ltr">+98 915 507 2143</span></a>
+            <a href="mailto:info@iran-truck.com" class="big-link reveal"><small data-i18n="ct.email">Email</small><span dir="ltr">info@iran-truck.com</span></a>
+            <address class="reveal"><small data-i18n="ct.visit">Visit</small><span data-i18n="ct.addr">No. 42, Pisheh 18th Street, Torogh Industrial Zone,<br>Mashhad, Iran — 9165919142</span></address>
           </div>
-
           <form class="form reveal" novalidate>
-            <p class="form__title">Or leave a note — we reply <em>personally.</em></p>
-            <div class="field"><input id="f-name" name="name" required placeholder=" " autocomplete="name"><label for="f-name">Name</label></div>
-            <div class="field"><input id="f-reach" name="reach" required placeholder=" " autocomplete="tel"><label for="f-reach">Phone or email</label></div>
-            <div class="field"><textarea id="f-msg" name="message" rows="3" required placeholder=" "></textarea><label for="f-msg">How can we help?</label></div>
-            <label class="consent"><input type="checkbox" required> <span>I agree that my details are stored so the team can reply.</span></label>
-            <button class="btn btn--light btn--wide magnetic" type="submit"><span>Send message</span></button>
+            <p class="form__title" data-i18n="fm.title">Or leave a note — we reply <em>personally.</em></p>
+            <div class="field"><input id="f-name" name="name" required placeholder=" " autocomplete="name"><label for="f-name" data-i18n="fm.name">Name</label></div>
+            <div class="field"><input id="f-reach" name="reach" required placeholder=" " autocomplete="tel"><label for="f-reach" data-i18n="fm.reach">Phone or email</label></div>
+            <div class="field"><textarea id="f-msg" name="message" rows="3" required placeholder=" "></textarea><label for="f-msg" data-i18n="fm.msg">How can we help?</label></div>
+            <label class="consent"><input type="checkbox" required> <span data-i18n="fm.consent">I agree that my details are stored so the team can reply.</span></label>
+            <button class="btn btn--light btn--wide magnetic" type="submit"><span data-i18n="fm.send">Send message</span></button>
             <p class="form__status" role="status" aria-live="polite"></p>
           </form>
         </div>
@@ -286,24 +327,25 @@
 
   <footer class="footer">
     <div class="wrap footer__row">
-      <div class="footer__brand"><img src="images/logo-crop.png" alt="" width="56" height="42"><p>Iran Truck Trading Group<br><span>Official representative of LEO in Iran</span></p></div>
-      <nav class="footer__nav"><a href="#story">Story</a><a href="#leo">LEO</a><a href="#collection">Collection</a><a href="#values">Values</a><a href="#contact">Contact</a></nav>
+      <div class="footer__brand"><img src="images/logo-crop.png" alt="" width="56" height="42"><p><span data-i18n="ft.name">Iran Truck Trading Group</span><br><small data-i18n="ft.sub">Official representative of LEO in Iran</small></p></div>
+      <nav class="footer__nav"><a href="#story" data-i18n="nav.story">Story</a><a href="#leo">LEO</a><a href="#collection" data-i18n="nav.collection">Collection</a><a href="#values" data-i18n="nav.values">Values</a><a href="#contact" data-i18n="nav.contact">Contact</a></nav>
     </div>
-    <div class="footer__word" aria-hidden="true"><span>IRAN</span> <span><em>Truck</em></span></div>
+    <div class="footer__word" aria-hidden="true" dir="ltr"><span>IRAN</span> <span><em>Truck</em></span></div>
     <div class="wrap footer__base">
-      <span>© <span class="js-year">2026</span> Iran Truck Trading Group</span>
-      <span>Torogh Industrial Zone, Mashhad</span>
-      <a href="#top" class="link">Back to top ↑</a>
+      <span>© <span class="js-year">2026</span> <span data-i18n="ft.name">Iran Truck Trading Group</span></span>
+      <span data-i18n="ft.loc">Torogh Industrial Zone, Mashhad</span>
+      <a href="#top" class="link" data-i18n="ft.top">Back to top ↑</a>
     </div>
   </footer>
 
-  <a class="wa" href="https://wa.me/989155072143" target="_blank" rel="noopener" aria-label="Message us on WhatsApp">
+  <a class="wa" href="https://wa.me/989155072143" target="_blank" rel="noopener" aria-label="WhatsApp">
     <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.4-.7-2.8-1.1-4.6-4-4.8-4.2-.1-.2-1.1-1.5-1.1-2.8s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.3.5-.4.4c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1.1c.2-.3.4-.2.6-.1l1.9.9c.3.1.5.2.5.3.1.2.1.7-.1 1.1z"/></svg>
   </a>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+  <script src="js/i18n.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>
