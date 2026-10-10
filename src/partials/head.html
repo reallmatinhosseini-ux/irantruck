@@ -1,11 +1,11 @@
 <!doctype html>
-<html lang="en" dir="ltr">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{{title}}</title>
   <meta name="description" content="{{description}}">
-  <meta name="theme-color" content="#0b1828">
+  <meta name="theme-color" content="#08090b">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Iran Truck Trading Group">
   <meta property="og:title" content="{{title}}">
@@ -14,58 +14,39 @@
   <link rel="icon" href="images/logo-crop.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wdth,wght@75..100,400..700&family=Vazirmatn:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wdth,wght@75..100,400..700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
-  <script>
-    (function (d) {
-      d.classList.add("js");
-      var l = new URLSearchParams(location.search).get("lang");
-      try { if (l) localStorage.setItem("itg-lang", l); l = l || localStorage.getItem("itg-lang"); } catch (e) {}
-      if (l === "fa") { d.lang = "fa"; d.dir = "rtl"; }
-    })(document.documentElement);
-  </script>
+  <script>document.documentElement.classList.add("js");</script>
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"Organization","name":"Iran Truck Trading Group","url":"https://iran-truck.com/","logo":"https://iran-truck.com/images/logo-crop.png","email":"info@iran-truck.com","telephone":"+98 51 3392 1186","address":{"@type":"PostalAddress","streetAddress":"No. 42, Pisheh 18th Street, Torogh Industrial Zone","addressLocality":"Mashhad","postalCode":"9165919142","addressCountry":"IR"}}
   </script>
 </head>
 <body data-page="{{page}}">
-  <a class="skip" href="#main" data-i18n="skip">Skip to content</a>
-
-  <div class="topbar">
-    <div class="wrap">
-      <p class="topbar__badge"><i></i><span data-i18n="top.badge">Official representative of LEO in Iran</span></p>
-      <div class="topbar__links">
-        <a href="tel:+985133921186" dir="ltr">+98 51 3392 1186</a>
-        <a href="mailto:info@iran-truck.com" class="hide-md">info@iran-truck.com</a>
-        <button class="lang-switch" data-lang-toggle type="button"><span class="en">EN</span> / <span class="fa">فا</span></button>
-      </div>
-    </div>
-  </div>
+  <a class="skip" href="#main">Skip to content</a>
 
   <header class="header">
     <div class="wrap">
       <a href="index.html" class="brand" aria-label="Iran Truck Trading Group — Home">
-        <img src="images/logo-crop.png" alt="" width="48" height="36">
-        <span class="brand__text"><strong>IRAN TRUCK</strong><small data-i18n="brand.sub">Trading Group</small></span>
+        <img src="images/logo-crop.png" alt="" width="50" height="38">
+        <span class="brand__text"><strong>IRAN TRUCK</strong><small>Trading Group</small></span>
       </a>
       <nav class="nav" aria-label="Main">
-        <a href="index.html" data-nav="home" data-i18n="nav.home">Home</a>
-        <a href="about.html" data-nav="about" data-i18n="nav.about">About</a>
-        <a href="leo.html" data-nav="leo" data-i18n="nav.leo">LEO Partnership</a>
-        <a href="products.html" data-nav="products" data-i18n="nav.products">Products</a>
-        <a href="contact.html" data-nav="contact" data-i18n="nav.contact">Contact</a>
+        <a href="about.html" data-nav="about">Company</a>
+        <a href="leo.html" data-nav="leo">LEO Partnership</a>
+        <a href="products.html" data-nav="products">Products</a>
+        <a href="contact.html" data-nav="contact">Contact</a>
       </nav>
-      <a href="contact.html" class="btn btn--brand header__cta" data-i18n="nav.cta">Get in touch</a>
+      <a href="tel:+985133921186" class="header__phone">+98 51 3392 1186</a>
       <button class="burger" type="button" aria-label="Menu" aria-expanded="false" aria-controls="mnav"><span></span><span></span><span></span></button>
     </div>
   </header>
   <nav class="mnav" id="mnav" aria-label="Mobile">
-    <a href="index.html" data-i18n="nav.home">Home</a>
-    <a href="about.html" data-i18n="nav.about">About</a>
-    <a href="leo.html" data-i18n="nav.leo">LEO Partnership</a>
-    <a href="products.html" data-i18n="nav.products">Products</a>
-    <a href="contact.html" data-i18n="nav.contact">Contact</a>
-    <a href="contact.html" class="btn btn--brand btn--lg" data-i18n="nav.cta">Get in touch</a>
+    <a href="index.html">Home</a>
+    <a href="about.html">Company</a>
+    <a href="leo.html">LEO Partnership</a>
+    <a href="products.html">Products</a>
+    <a href="contact.html">Contact</a>
+    <a href="tel:+985133921186" class="btn btn--light btn--lg">Call +98 51 3392 1186</a>
   </nav>
 
   <main id="main">
