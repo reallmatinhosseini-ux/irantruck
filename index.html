@@ -16,6 +16,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wdth,wght@75..100,400..700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
+  <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
   <script>
     (function (d) {
       d.classList.add("js");
@@ -143,6 +144,32 @@
             <div class="tile__img"><img src="images/prod-rings-cut.png" alt="Piston ring set" loading="lazy"></div>
             <div class="tile__meta"><h3>Piston Rings</h3><span>Engine</span><p>Compression and oil-control ring sets for diesel and CNG engines.</p></div>
           </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3D CYLINDER KIT -->
+    <section class="kit3d" aria-label="The LEO cylinder kit">
+      <div class="wrap kit3d__inner">
+        <div class="kit3d__copy">
+          <p class="eyebrow">The LEO cylinder kit</p>
+          <h2 class="h2 split">Four parts. One matched set.</h2>
+          <p class="lead">Liner, piston, pin and rings — engineered together and supplied together, for a complete and reliable engine rebuild.</p>
+          <ol class="kit3d__list">
+            <li><span>01</span>Cylinder liner</li>
+            <li><span>02</span>Piston</li>
+            <li><span>03</span>Piston pin</li>
+            <li><span>04</span>Piston ring set</li>
+          </ol>
+          <a href="products.html#engine" class="link">See the product<svg viewBox="0 0 16 16"><path d="M1 8h13M9 3l5 5-5 5"/></svg></a>
+        </div>
+        <div class="kit3d__stage">
+          <img class="kit3d__fallback" src="images/prod-kit-cut.png" alt="LEO cylinder combination kit">
+          <span class="kit3d__label" data-part="liner">Cylinder liner</span>
+          <span class="kit3d__label" data-part="piston">Piston</span>
+          <span class="kit3d__label" data-part="pin">Piston pin</span>
+          <span class="kit3d__label" data-part="rings">Piston rings</span>
+          <p class="kit3d__hint">Scroll to take it apart · move to turn</p>
         </div>
       </div>
     </section>
@@ -374,5 +401,6 @@
   <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
   <script src="js/main.js"></script>
   <script src="js/motion.js"></script>
+  <script type="module" src="js/kit3d.js"></script>
 </body>
 </html>
