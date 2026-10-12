@@ -16,13 +16,23 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wdth,wght@75..100,400..700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
-  <script>document.documentElement.classList.add("js");</script>
+  <script>
+    (function (d) {
+      d.classList.add("js");
+      if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        d.classList.add("motion");
+        setTimeout(function () { if (!window.__motionReady) d.classList.remove("motion"); }, 3500);
+      }
+    })(document.documentElement);
+  </script>
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"Organization","name":"Iran Truck Trading Group","url":"https://iran-truck.com/","logo":"https://iran-truck.com/images/logo-crop.png","email":"info@iran-truck.com","telephone":"+98 51 3392 1186","address":{"@type":"PostalAddress","streetAddress":"No. 42, Pisheh 18th Street, Torogh Industrial Zone","addressLocality":"Mashhad","postalCode":"9165919142","addressCountry":"IR"}}
   </script>
 </head>
 <body data-page="{{page}}">
   <a class="skip" href="#main">Skip to content</a>
+  <div class="curtain" aria-hidden="true"><img src="images/logo-crop.png" alt=""></div>
+  <div class="cursor" aria-hidden="true"><span>View</span></div>
 
   <header class="header">
     <div class="wrap">

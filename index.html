@@ -16,13 +16,23 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wdth,wght@75..100,400..700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
-  <script>document.documentElement.classList.add("js");</script>
+  <script>
+    (function (d) {
+      d.classList.add("js");
+      if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        d.classList.add("motion");
+        setTimeout(function () { if (!window.__motionReady) d.classList.remove("motion"); }, 3500);
+      }
+    })(document.documentElement);
+  </script>
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"Organization","name":"Iran Truck Trading Group","url":"https://iran-truck.com/","logo":"https://iran-truck.com/images/logo-crop.png","email":"info@iran-truck.com","telephone":"+98 51 3392 1186","address":{"@type":"PostalAddress","streetAddress":"No. 42, Pisheh 18th Street, Torogh Industrial Zone","addressLocality":"Mashhad","postalCode":"9165919142","addressCountry":"IR"}}
   </script>
 </head>
 <body data-page="index">
   <a class="skip" href="#main">Skip to content</a>
+  <div class="curtain" aria-hidden="true"><img src="images/logo-crop.png" alt=""></div>
+  <div class="cursor" aria-hidden="true"><span>View</span></div>
 
   <header class="header">
     <div class="wrap">
@@ -84,7 +94,22 @@
       <div class="wrap">
         <div class="statement">
           <p class="eyebrow reveal">01 — Who we are</p>
-          <p class="statement__text reveal">For more than twenty-five years we have supplied the parts that keep heavy vehicles on the road. <span class="dim">A family business from Mashhad, the official representative of LEO in Iran — and a partner our customers return to, year after year.</span></p>
+          <p class="statement__text js-fill">For more than twenty-five years we have supplied the parts that keep heavy vehicles on the road. <span class="dim">A family business from Mashhad, the official representative of LEO in Iran — and a partner our customers return to, year after year.</span></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- MOSAIC -->
+    <section class="sec" style="padding-top:0">
+      <div class="wrap">
+        <div class="mosaic">
+          <a href="products.html#engine" class="m1 unveil"><img src="images/parts/engine-pistons.jpg" alt="Pistons on a crankshaft" loading="lazy"><figcaption><b>01</b>Engine components</figcaption></a>
+          <a href="products.html#brakes" class="m2 unveil"><img src="images/parts/brake-1.jpg" alt="Brake disc" loading="lazy"><figcaption><b>02</b>Brakes</figcaption></a>
+          <a href="products.html#suspension" class="m3 unveil"><img src="images/parts/susp-1.jpg" alt="Shock absorber" loading="lazy"><figcaption><b>03</b>Suspension</figcaption></a>
+          <a href="products.html#engine" class="m4 unveil"><img src="images/parts/engine-conrods.jpg" alt="Connecting rods" loading="lazy"><figcaption><b>01</b>Connecting rods &amp; crankshafts</figcaption></a>
+          <a href="products.html#electrical" class="m5 unveil"><img src="images/parts/elec-1.jpg" alt="Batteries" loading="lazy"><figcaption><b>04</b>Electrical</figcaption></a>
+          <a href="products.html#accessories" class="m6 unveil"><img src="images/parts/bearing-1.jpg" alt="Tapered roller bearing" loading="lazy"><figcaption><b>05</b>Bearings &amp; accessories</figcaption></a>
+          <a href="products.html#engine" class="m7 unveil"><img src="images/parts/engine-block.jpg" alt="Engine block" loading="lazy"><figcaption><b>01</b>Engine blocks &amp; liners</figcaption></a>
         </div>
       </div>
     </section>
@@ -94,27 +119,43 @@
       <div class="wrap">
         <div class="index reveal"><span>02 — Products</span><span>What we supply</span></div>
         <ul class="plist">
-          <li class="reveal"><a href="products.html#engine" data-peek="images/prod-kit.jpg"><span class="plist__n">01</span><span class="plist__name">Engine components</span><span class="plist__desc">Cylinder kits, liners, pistons, rings, bearings</span><i>↗</i></a></li>
-          <li class="reveal"><a href="products.html#brakes" data-peek="images/st-workshop.jpg"><span class="plist__n">02</span><span class="plist__name">Brakes</span><span class="plist__desc">Braking components for heavy vehicles</span><i>↗</i></a></li>
-          <li class="reveal"><a href="products.html#suspension" data-peek="images/st-fleet.jpg"><span class="plist__n">03</span><span class="plist__name">Suspension</span><span class="plist__desc">Parts for trucks and trailers</span><i>↗</i></a></li>
-          <li class="reveal"><a href="products.html#electrical" data-peek="images/st-mechanic.jpg"><span class="plist__n">04</span><span class="plist__name">Electrical systems</span><span class="plist__desc">Electrical parts and components</span><i>↗</i></a></li>
-          <li class="reveal"><a href="products.html#accessories" data-peek="images/st-warehouse.jpg"><span class="plist__n">05</span><span class="plist__name">Accessories</span><span class="plist__desc">For trucks and commercial vehicles</span><i>↗</i></a></li>
+          <li class="reveal"><a href="products.html#engine" data-peek="images/parts/engine-pistons.jpg"><span class="plist__n">01</span><span class="plist__name">Engine components</span><span class="plist__desc">Cylinder kits, liners, pistons, rings, bearings</span><i>↗</i></a></li>
+          <li class="reveal"><a href="products.html#brakes" data-peek="images/parts/brake-4.jpg"><span class="plist__n">02</span><span class="plist__name">Brakes</span><span class="plist__desc">Braking components for heavy vehicles</span><i>↗</i></a></li>
+          <li class="reveal"><a href="products.html#suspension" data-peek="images/parts/susp-4.jpg"><span class="plist__n">03</span><span class="plist__name">Suspension</span><span class="plist__desc">Parts for trucks and trailers</span><i>↗</i></a></li>
+          <li class="reveal"><a href="products.html#electrical" data-peek="images/parts/elec-2.jpg"><span class="plist__n">04</span><span class="plist__name">Electrical systems</span><span class="plist__desc">Electrical parts and components</span><i>↗</i></a></li>
+          <li class="reveal"><a href="products.html#accessories" data-peek="images/parts/bearing-2.jpg"><span class="plist__n">05</span><span class="plist__name">Accessories</span><span class="plist__desc">For trucks and commercial vehicles</span><i>↗</i></a></li>
         </ul>
 
         <div class="duo">
           <a href="products.html#engine" class="tile reveal">
-            <div class="tile__img"><img src="images/prod-kit.jpg" alt="LEO cylinder combination kit" loading="lazy"></div>
-            <div class="tile__meta"><h3>Cylinder Combination</h3><span>LEO</span><p>Matched liners, pistons, pins and rings for a complete rebuild.</p></div>
+            <div class="tile__img"><img src="images/prod-kit-cut.png" alt="LEO cylinder combination kit" loading="lazy"></div>
+            <div class="tile__meta"><h3>Cylinder Combination</h3><span>LEO</span><p>15 LEO part numbers — matched liners, pistons, pins and rings.</p></div>
           </a>
           <a href="products.html#engine" class="tile reveal">
-            <div class="tile__img"><img src="images/prod-rings.jpg" alt="Piston ring set" loading="lazy"></div>
-            <div class="tile__meta"><h3>Piston Rings</h3><span>Engine</span><p>Precision sets for compression, oil control and long service life.</p></div>
+            <div class="tile__img"><img src="images/prod-rings-cut.png" alt="Piston ring set" loading="lazy"></div>
+            <div class="tile__meta"><h3>Piston Rings</h3><span>Engine</span><p>7 LEO part numbers — compression and oil-control ring sets.</p></div>
           </a>
         </div>
       </div>
     </section>
 
     <div class="peek" aria-hidden="true"><img alt=""></div>
+
+    <!-- CATALOGUE -->
+    <section class="sec sec--soft" id="catalogue">
+      <div class="wrap">
+        <div class="head head--split">
+          <div><p class="eyebrow reveal">Parts finder</p><h2 class="h2 split">Find the right LEO part in seconds.</h2></div>
+          <p class="lead reveal">Search our published LEO catalogue by LEO number, OEM article or engine. Every row is one click from an enquiry.</p>
+        </div>
+        <div class="cat-tool reveal" data-catalog data-limit="6"></div>
+      </div>
+    </section>
+
+    <!-- FILMSTRIP -->
+    <section style="padding-bottom:var(--sec)" aria-label="Parts in pictures">
+      <div class="film"><div class="film__track"><figure><img src="images/parts/engine-pistons.jpg" alt="" loading="lazy"></figure><figure><img src="images/parts/brake-2.jpg" alt="" loading="lazy"></figure><figure><img src="images/parts/susp-2.jpg" alt="" loading="lazy"></figure><figure><img src="images/parts/engine-gears.jpg" alt="" loading="lazy"></figure><figure><img src="images/parts/elec-3.jpg" alt="" loading="lazy"></figure><figure><img src="images/parts/brake-3.jpg" alt="" loading="lazy"></figure><figure><img src="images/parts/engine-bay.jpg" alt="" loading="lazy"></figure><figure><img src="images/parts/susp-3.jpg" alt="" loading="lazy"></figure><figure><img src="images/parts/bearing-2.jpg" alt="" loading="lazy"></figure><figure><img src="images/parts/brake-5.jpg" alt="" loading="lazy"></figure><figure><img src="images/parts/engine-conrods.jpg" alt="" loading="lazy"></figure><figure><img src="images/parts/elec-4.jpg" alt="" loading="lazy"></figure><figure><img src="images/parts/susp-4.jpg" alt="" loading="lazy"></figure><figure><img src="images/parts/brake-4.jpg" alt="" loading="lazy"></figure><figure><img src="images/parts/engine-pistons.jpg" alt="" aria-hidden="true" loading="lazy"></figure><figure><img src="images/parts/brake-2.jpg" alt="" aria-hidden="true" loading="lazy"></figure><figure><img src="images/parts/susp-2.jpg" alt="" aria-hidden="true" loading="lazy"></figure><figure><img src="images/parts/engine-gears.jpg" alt="" aria-hidden="true" loading="lazy"></figure><figure><img src="images/parts/elec-3.jpg" alt="" aria-hidden="true" loading="lazy"></figure><figure><img src="images/parts/brake-3.jpg" alt="" aria-hidden="true" loading="lazy"></figure><figure><img src="images/parts/engine-bay.jpg" alt="" aria-hidden="true" loading="lazy"></figure><figure><img src="images/parts/susp-3.jpg" alt="" aria-hidden="true" loading="lazy"></figure><figure><img src="images/parts/bearing-2.jpg" alt="" aria-hidden="true" loading="lazy"></figure><figure><img src="images/parts/brake-5.jpg" alt="" aria-hidden="true" loading="lazy"></figure><figure><img src="images/parts/engine-conrods.jpg" alt="" aria-hidden="true" loading="lazy"></figure><figure><img src="images/parts/elec-4.jpg" alt="" aria-hidden="true" loading="lazy"></figure><figure><img src="images/parts/susp-4.jpg" alt="" aria-hidden="true" loading="lazy"></figure><figure><img src="images/parts/brake-4.jpg" alt="" aria-hidden="true" loading="lazy"></figure></div></div>
+    </section>
 
     <!-- LEO, full bleed -->
     <section class="bleed">
@@ -123,7 +164,7 @@
       <div class="wrap">
         <div>
           <p class="eyebrow eyebrow--light reveal">03 — Partnership</p>
-          <h2 class="h2 reveal">The official representative of LEO in Iran.</h2>
+          <h2 class="h2 split">The official representative of LEO in Iran.</h2>
         </div>
         <div class="reveal">
           <p>Original products, technical support from the manufacturer and dependable after-sales service — through one official channel.</p>
@@ -132,28 +173,43 @@
       </div>
     </section>
 
+    <!-- ENGINES (pinned horizontal) -->
+    <section class="hs" aria-label="Engines we supply parts for">
+      <div class="hs__pin">
+        <div class="hs__track">
+          <div class="hs__intro">
+            <p class="eyebrow">Applications</p>
+            <h2 class="h2">Built for the engines that power Iran’s fleets.</h2>
+            <p class="lead">LEO cylinder kits and piston rings, matched to the most common heavy-truck engines on Iran’s roads.</p>
+            <a href="products.html#catalogue" class="link">Search the catalogue<svg viewBox="0 0 16 16"><path d="M1 8h13M9 3l5 5-5 5"/></svg></a>
+          </div>
+          <article class="hs__card"><figure><img src="images/parts/engine-bay.jpg" alt="" loading="lazy"></figure><div class="hs__meta"><span>Weichai</span><h3>Weichai WP10 · WP12</h3><p>Diesel and CNG</p></div></article><article class="hs__card"><figure><img src="images/parts/engine-block.jpg" alt="" loading="lazy"></figure><div class="hs__meta"><span>Weichai</span><h3>WP13</h3><p>Diesel and CNG</p></div></article><article class="hs__card"><figure><img src="images/parts/engine-conrods.jpg" alt="" loading="lazy"></figure><div class="hs__meta"><span>Sinotruk</span><h3>MC11 · MC13</h3><p>HOWO · Sitrak</p></div></article><article class="hs__card"><figure><img src="images/parts/engine-pistons.jpg" alt="" loading="lazy"></figure><div class="hs__meta"><span>FAW</span><h3>FAW J6 · CA6DM2</h3><p>FAW heavy trucks</p></div></article><article class="hs__card"><figure><img src="images/parts/engine-gears.jpg" alt="" loading="lazy"></figure><div class="hs__meta"><span>Shacman</span><h3>X3000 · ISM11</h3><p>Shaanxi heavy trucks</p></div></article><article class="hs__card"><figure><img src="images/parts/elec-3.jpg" alt="" loading="lazy"></figure><div class="hs__meta"><span>Sinotruk</span><h3>D12 · T12 CNG</h3><p>HOWO CNG</p></div></article>
+        </div>
+      </div>
+    </section>
+
     <!-- WHY -->
     <section class="sec">
       <div class="wrap">
         <div class="head head--split">
-          <div><p class="eyebrow reveal">04 — Why Iran Truck</p><h2 class="h2 reveal">A supplier you can rely on, before and after the sale.</h2></div>
+          <div><p class="eyebrow reveal">04 — Why Iran Truck</p><h2 class="h2 split">A supplier you can rely on, before and after the sale.</h2></div>
         </div>
-        <div class="cols">
-          <div class="col reveal"><span class="col__n">I</span><h3>Genuine quality</h3><p>Original products from trusted manufacturers — nothing we would not stand behind.</p></div>
-          <div class="col reveal"><span class="col__n">II</span><h3>Expert advice</h3><p>Specialists who identify the right part for your make, model and engine.</p></div>
-          <div class="col reveal"><span class="col__n">III</span><h3>Global sourcing</h3><p>Relationships with manufacturers abroad for dependable availability.</p></div>
-          <div class="col reveal"><span class="col__n">IV</span><h3>Personal service</h3><p>One team, from your first question to after-sales support.</p></div>
-        </div>
+        <div class="vcards">
+          <div class="vcard reveal"><div class="vcard__img"><img src="images/parts/engine-gears.jpg" alt="" loading="lazy"></div><span class="vcard__n">I</span><h3>Genuine quality</h3><p>Original products from trusted manufacturers.</p></div>
+          <div class="vcard reveal"><div class="vcard__img"><img src="images/st-mechanic.jpg" alt="" loading="lazy"></div><span class="vcard__n">II</span><h3>Expert advice</h3><p>The right part for your make, model and engine.</p></div>
+          <div class="vcard reveal"><div class="vcard__img"><img src="images/st-warehouse.jpg" alt="" loading="lazy"></div><span class="vcard__n">III</span><h3>Global sourcing</h3><p>Dependable availability through partners abroad.</p></div>
+          <div class="vcard reveal"><div class="vcard__img"><img src="images/parts/elec-2.jpg" alt="" loading="lazy"></div><span class="vcard__n">IV</span><h3>Personal service</h3><p>One team, from first question to after-sales.</p></div>
+</div>
       </div>
     </section>
 
     <!-- COMPANY -->
     <section class="sec sec--soft">
       <div class="wrap company">
-        <figure class="company__img unveil" style="margin:0"><img src="images/store-team.jpg" alt="The Iran Truck branch in Mashhad" loading="lazy"></figure>
+        <figure class="company__img unveil" style="margin:0"><img src="images/office.jpg" alt="The Iran Truck office in Mashhad" loading="lazy" style="object-position:30% 50%"></figure>
         <div class="company__text">
           <p class="eyebrow reveal">05 — The company</p>
-          <h2 class="h2 reveal" style="margin-bottom:28px">A family business, built on lasting relationships.</h2>
+          <h2 class="h2 split" style="margin-bottom:28px">A family business, built on lasting relationships.</h2>
           <p class="lead reveal">Iran Truck Trading Group is a trusted commercial group based in Mashhad, specialising in parts for heavy trucks, machinery and commercial vehicles.</p>
           <p class="reveal">Our commitment to quality, availability and professional service has made us a recognised name in Iran’s transportation industry.</p>
           <ul class="roster">
@@ -170,7 +226,7 @@
       <div class="wrap route">
         <div>
           <p class="eyebrow reveal">06 — From factory to fleet</p>
-          <h2 class="h2 reveal">Shandong to Mashhad.</h2>
+          <h2 class="h2 split">Shandong to Mashhad.</h2>
           <p class="lead reveal" style="margin-top:22px">LEO parts travel from the manufacturer in Shandong, China, to us in Mashhad — and from there to fleets and workshops across Iran.</p>
           <dl class="facts">
             <div class="reveal"><dt>≈ 5,100 km</dt><dd>Shandong to Mashhad, straight-line distance</dd></div>
@@ -204,21 +260,24 @@
         <figure class="unveil"><img src="images/team-expo.jpg" alt="With LEO at an exhibition" loading="lazy"><figcaption>With LEO, international exhibition</figcaption></figure>
         <figure class="unveil"><img src="images/factory.jpg" alt="LEO facility in Shandong" loading="lazy"><figcaption>LEO facility, Shandong</figcaption></figure>
         <figure class="unveil"><img src="images/team-office.jpg" alt="Meeting with partners" loading="lazy"><figcaption>Meeting our partners</figcaption></figure>
-        <figure class="unveil"><img src="images/store-front.jpg" alt="Iran Truck building in Mashhad" loading="lazy"><figcaption>Iran Truck, Mashhad</figcaption></figure>
+        <figure class="unveil"><img src="images/office.jpg" alt="Iran Truck office in Mashhad" loading="lazy"><figcaption>Our office, Mashhad</figcaption></figure>
       </div>
     </section>
 
     <!-- MAKES -->
-    <section class="sec sec--tight sec--soft">
+    <section class="sec sec--soft">
       <div class="wrap">
-        <div class="index reveal"><span>08 — Makes</span><span>Parts for the makes Iran’s fleets rely on</span></div>
-        <ul class="makes">
-          <li class="reveal"><img src="images/brand-2.png" alt="Dongfeng"></li>
-          <li class="reveal"><img src="images/brand-1.png" alt="Sinotruk"></li>
-          <li class="reveal"><img src="images/brand-4.png" alt="Foton"></li>
-          <li class="reveal"><img src="images/brand-5.png" alt="Cummins"></li>
-          <li class="reveal"><img src="images/brand-6.png" alt="Yuchai"></li>
-          <li class="reveal"><img src="images/brand-3.png" alt="Amico"></li>
+        <div class="index reveal"><span>08 — Brands we support</span><span>Parts for the makes Iran’s fleets rely on</span></div>
+        <ul class="brandwall">
+          <li class="reveal"><img src="images/brands/dongfeng-dark.svg" alt="Dongfeng Motor"><span>Dongfeng</span></li>
+          <li class="reveal"><img src="images/brands/sinotruk.png" alt="Sinotruk CNHTC"><span>Sinotruk · HOWO · Sitrak</span></li>
+          <li class="reveal"><img src="images/brands/weichai-dark.svg" alt="Weichai"><span>Weichai</span></li>
+          <li class="reveal"><img src="images/brands/shacman-dark.png" alt="Shacman"><span>Shacman · Shaanxi</span></li>
+          <li class="reveal"><img src="images/brands/faw-dark.png" alt="FAW Group"><span>FAW</span></li>
+          <li class="reveal"><img src="images/brands/foton-dark.svg" alt="Foton"><span>Foton</span></li>
+          <li class="reveal"><img src="images/brands/cummins-dark.svg" alt="Cummins"><span>Cummins</span></li>
+          <li class="reveal"><img src="images/brands/yuchai.png" alt="Yuchai"><span>Yuchai</span></li>
+          <li class="reveal"><img src="images/brand-3.png" alt="Amico" class="is-word"><span>Amico</span></li>
         </ul>
       </div>
     </section>
@@ -228,7 +287,7 @@
       <div class="wrap grid-2" style="align-items:start">
         <div>
           <p class="eyebrow reveal">09 — Questions</p>
-          <h2 class="h2 reveal">Frequently asked.</h2>
+          <h2 class="h2 split">Frequently asked.</h2>
         </div>
         <div class="faq">
           <details class="qa reveal"><summary>What products do you offer?<i></i></summary><p>Heavy truck spare parts, including engine components, brakes, suspension, electrical systems and accessories for trucks and commercial vehicles.</p></details>
@@ -243,15 +302,18 @@
     <section class="sec sec--soft">
       <div class="wrap">
         <p class="eyebrow reveal">10 — Contact</p>
-        <h2 class="h2 reveal" style="margin-bottom:clamp(48px,6vw,88px);max-width:12em">Speak with our team in Mashhad.</h2>
-        <div class="reach">
-          <a href="tel:+985133921186" class="reveal"><small>Office</small><strong>+98 51 3392 1186</strong></a>
-          <a href="https://wa.me/989155072143" target="_blank" rel="noopener" class="reveal"><small>WhatsApp</small><strong>+98 915 507 2143</strong></a>
-          <a href="mailto:info@iran-truck.com" class="reveal"><small>Email</small><strong>info@iran-truck.com</strong></a>
-        </div>
-        <div class="grid-2" style="margin-top:48px;align-items:end">
-          <p class="lead reveal">No. 42, Pisheh 18th Street, Torogh Industrial Zone, Mashhad, Iran. <span class="muted">Postal code 9165919142.</span></p>
-          <div class="reveal" style="justify-self:end"><a href="contact.html" class="btn btn--accent btn--lg">Send us a message<svg viewBox="0 0 16 16"><path d="M1 8h13M9 3l5 5-5 5"/></svg></a></div>
+        <h2 class="h2 split" style="margin-bottom:clamp(40px,5vw,72px);max-width:12em">Visit us in Mashhad.</h2>
+        <div class="visit">
+          <figure class="visit__img unveil"><img src="images/office.jpg" alt="The Iran Truck office in Mashhad" loading="lazy"></figure>
+          <div>
+            <div class="reach">
+              <a href="tel:+985133921186" class="reveal"><small>Office</small><strong>+98 51 3392 1186</strong></a>
+              <a href="https://wa.me/989155072143" target="_blank" rel="noopener" class="reveal"><small>WhatsApp</small><strong>+98 915 507 2143</strong></a>
+              <a href="mailto:info@iran-truck.com" class="reveal"><small>Email</small><strong>info@iran-truck.com</strong></a>
+            </div>
+            <p class="reveal" style="margin:28px 0 32px">No. 42, Pisheh 18th Street, Torogh Industrial Zone, Mashhad, Iran. <span class="muted">Postal code 9165919142.</span></p>
+            <a href="contact.html" class="btn btn--accent btn--lg reveal">Send us a message<svg viewBox="0 0 16 16"><path d="M1 8h13M9 3l5 5-5 5"/></svg></a>
+          </div>
         </div>
       </div>
     </section>
@@ -270,6 +332,8 @@
           <li><a href="leo.html">LEO Partnership</a></li>
           <li><a href="contact.html#faq">FAQ</a></li>
           <li><a href="contact.html">Contact</a></li>
+          <li><a href="https://www.instagram.com/irantrucktradinggroup/" target="_blank" rel="noopener">Instagram</a></li>
+          <li><a href="https://u.wechat.com/kNPMzxUWNOvkrMhEEE2BC2Q?s=2" target="_blank" rel="noopener">WeChat</a></li>
         </ul>
       </div>
       <div>
@@ -288,6 +352,7 @@
           <li><a href="https://wa.me/989155072143" target="_blank" rel="noopener">+98 915 507 2143</a></li>
           <li><a href="mailto:info@iran-truck.com">info@iran-truck.com</a></li>
           <li>No. 42, Pisheh 18th Street,<br>Torogh Industrial Zone</li>
+          <li class="muted">Every day, 9:00 – 17:00</li>
         </ul>
       </div>
     </div>
@@ -304,6 +369,11 @@
     <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.4-.7-2.8-1.1-4.6-4-4.8-4.2-.1-.2-1.1-1.5-1.1-2.8s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.3.5-.4.4c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1.1c.2-.3.4-.2.6-.1l1.9.9c.3.1.5.2.5.3.1.2.1.7-.1 1.1z"/></svg>
   </a>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+  <script src="js/catalog.js"></script>
   <script src="js/main.js"></script>
+  <script src="js/motion.js"></script>
 </body>
 </html>

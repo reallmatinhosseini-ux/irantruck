@@ -14,3 +14,5 @@ Pages: `index.html`, `about.html`, `leo.html`, `products.html`, `contact.html` (
 The generated pages are committed, so any static host (GitHub Pages) serves them as-is.
 
 Stock photography (`images/st-*`, `images/lx-*`) is from Unsplash (Unsplash License); `media/hero.mp4` is from Mixkit (Mixkit License).
+
+Brand logos (`images/brands/`) are the manufacturers' trademarks, sourced from Wikimedia Commons / Wikipedia and recoloured for a dark background; they indicate compatibility only. Part photography in `images/parts/` is from Unsplash (Unsplash License). The LEO catalogue in `js/catalog.js` is transcribed from the product sheets on iran-truck.com.
