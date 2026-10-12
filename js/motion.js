@@ -62,12 +62,20 @@
     const chars = [];
     const walk = (node) => [...node.childNodes].forEach((n) => {
       if (n.nodeType === 3) {
+        // characters are grouped per word so lines only ever break between words
         const frag = document.createDocumentFragment();
-        [...n.textContent].forEach((c) => {
-          const s = document.createElement("span");
-          s.textContent = c === " " ? " " : c;
-          s.style.display = "inline-block";
-          frag.appendChild(s); chars.push(s);
+        n.textContent.split(/(\s+)/).forEach((t) => {
+          if (!t) return;
+          if (/^\s+$/.test(t)) { frag.appendChild(document.createTextNode(" ")); return; }
+          const word = document.createElement("span");
+          word.style.cssText = "display:inline-block;white-space:nowrap";
+          [...t].forEach((c) => {
+            const s = document.createElement("span");
+            s.textContent = c;
+            s.style.display = "inline-block";
+            word.appendChild(s); chars.push(s);
+          });
+          frag.appendChild(word);
         });
         n.replaceWith(frag);
       } else if (n.nodeType === 1) walk(n);
@@ -187,7 +195,7 @@
   $$(".bleed--expand").forEach((sec) => {
     const img = $(".bleed__img", sec);
     mm.add({ sm: "(max-width: 920px)", lg: "(min-width: 921px)" }, (c) => {
-      const from = c.conditions.sm ? "inset(24% 8% 24% 8%)" : "inset(20% 28% 20% 28%)";
+      const from = c.conditions.sm ? "inset(14% 6% 14% 6%)" : "inset(10% 24% 10% 24%)";
       gsap.timeline({ scrollTrigger: { trigger: sec, start: "top top", end: "+=120%", pin: true, scrub: 1, anticipatePin: 1 } })
         .fromTo(img, { clipPath: from }, { clipPath: "inset(0% 0% 0% 0%)", ease: "power2.inOut", duration: 1 })
         .fromTo($("img", img), { scale: 1.35 }, { scale: 1, ease: "none", duration: 1 }, 0)
@@ -198,12 +206,13 @@
     gsap.fromTo($(".bleed__img img", b), { scale: 1.22 }, { scale: 1, ease: "none", scrollTrigger: { trigger: b, start: "top bottom", end: "bottom top", scrub: true } });
   });
 
-  /* ---------- stacking cards: earlier cards recede ---------- */
-  const cards = $$(".stackx__card");
-  cards.forEach((card, i) => {
-    gsap.fromTo($("img", card), { scale: 1.25 }, { scale: 1, ease: "none", scrollTrigger: { trigger: card, start: "top bottom", end: "top 20%", scrub: true } });
-    if (i === cards.length - 1) return;
-    gsap.to(card, { scale: 0.92, filter: "brightness(.45)", ease: "none", scrollTrigger: { trigger: cards[i + 1], start: "top bottom", end: "top 110px", scrub: true } });
+  /* ---------- why cards: rise in, photos settle ---------- */
+  ScrollTrigger.batch(".stackx__card", {
+    start: "top 88%",
+    onEnter: (els) => gsap.from(els, { y: 80, autoAlpha: 0, duration: 1.2, ease: "expo.out", stagger: 0.12, overwrite: true }),
+  });
+  $$(".stackx__card img").forEach((img) => {
+    gsap.fromTo(img, { scale: 1.2 }, { scale: 1, ease: "none", scrollTrigger: { trigger: img.closest(".stackx__card"), start: "top bottom", end: "bottom 40%", scrub: true } });
   });
 
   /* ---------- pinned horizontal engines (desktop) ---------- */
@@ -214,7 +223,6 @@
     const tween = gsap.to(track, { x: () => -dist(), ease: "none", scrollTrigger: { trigger: ".hs", start: "top top", end: () => "+=" + dist(), pin: true, scrub: 1, invalidateOnRefresh: true, anticipatePin: 1 } });
     $$(".hs__card", track).forEach((card) => {
       gsap.fromTo($("img", card), { xPercent: 8 }, { xPercent: -8, ease: "none", scrollTrigger: { trigger: card, containerAnimation: tween, start: "left right", end: "right left", scrub: true } });
-      gsap.from(card, { y: 120, rotate: 2, ease: "none", scrollTrigger: { trigger: card, containerAnimation: tween, start: "left 100%", end: "left 60%", scrub: true } });
     });
   });
 

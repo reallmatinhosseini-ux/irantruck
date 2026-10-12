@@ -145,7 +145,7 @@ function build() {
     const w = stage.clientWidth, h = stage.clientHeight;
     renderer.setSize(w, h, false);
     camera.aspect = w / h;
-    camera.position.z = w < 700 ? 14 : 11;
+    camera.position.z = w < 500 ? 17 : w < 700 ? 14 : 11;
     camera.updateProjectionMatrix();
   }
   resize();

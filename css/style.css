@@ -690,3 +690,33 @@ html:not(.motion) .curtain { display: none; }
   .kit3d__inner { grid-template-columns: 1fr; }
   .kit3d__stage { height: 64vh; }
 }
+
+/* ---------- design fixes ---------- */
+.bleed--expand { background: var(--bg); }
+.mosaic figcaption b { text-transform: uppercase; color: var(--accent); }
+/* why cards: clean 2 x 2 grid instead of a sticky stack */
+.stackx { grid-template-columns: 1fr 1fr; gap: 20px; }
+.stackx__card { position: relative; top: auto; grid-template-columns: 1fr; grid-template-rows: auto 1fr; min-height: 0; }
+.stackx__card figure { aspect-ratio: 16 / 10; }
+.stackx__body { justify-content: flex-start; padding: clamp(24px, 3vw, 44px); }
+.stackx__body span { margin-bottom: 18px; }
+.stackx__body h3 { font-size: clamp(26px, 2.4vw, 38px); margin-bottom: 12px; }
+/* brand logos: one consistent white treatment so every mark reads on dark */
+.brandwall img { filter: brightness(0) invert(1); opacity: .82; }
+.brandwall li:hover img { opacity: 1; }
+/* engines: cards line up */
+.hs__track { align-items: flex-start; }
+.hs__intro { align-self: center; }
+@media (max-width: 920px) {
+  .stackx { grid-template-columns: 1fr; }
+  .stackx__card { top: auto; min-height: 0; }
+}
+@media (max-width: 700px) {
+  .kit3d__label { display: none !important; }
+}
+.brandwall img.is-wide { max-width: 64%; max-height: 34%; }
+@media (max-width: 600px) { .mosaic figcaption b { display: none; } .mosaic figcaption { font-size: 12px; padding: 10px 12px; } }
+.brandwall img.is-color { filter: none; opacity: .95; }
+.brandwall img.is-foton { max-width: 92%; max-height: 70%; }
+.brandwall img.is-foton { width: 50%; height: auto; max-height: none; }
+.brandwall img.is-word { width: 34%; height: auto; max-height: none; }
