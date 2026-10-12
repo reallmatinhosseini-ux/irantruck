@@ -44,7 +44,8 @@
 
   /* Hero entrance */
   const hero = $(".hero");
-  if (hero) requestAnimationFrame(() => setTimeout(() => hero.classList.add("is-ready"), 120));
+  // motion.js holds the hero until its intro finishes
+  if (hero) requestAnimationFrame(() => setTimeout(() => { if (!root.dataset.hold) hero.classList.add("is-ready"); }, 120));
 
   /* Reveal text and unveil photographs as they enter the viewport */
   const items = $$(".reveal, .unveil");

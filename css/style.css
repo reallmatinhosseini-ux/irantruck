@@ -608,3 +608,61 @@ html:not(.motion) .curtain { display: none; }
   .hs__card figure { height: auto; aspect-ratio: 4 / 3; min-height: 0; }
   .hs__card img { width: 100%; margin: 0; }
 }
+
+/* ==========================================================
+   v-motion — cinematic scenes
+   ========================================================== */
+/* intro curtain */
+.curtain { background: #030710; }
+.curtain__inner { display: grid; justify-items: center; gap: 22px; }
+.curtain__logo { width: 76px; }
+.curtain__word { display: flex; overflow: hidden; font-size: clamp(30px, 4vw, 54px); font-weight: 500; letter-spacing: .14em; color: var(--ink); line-height: 1; }
+.curtain__word span { display: inline-block; }
+.curtain__bar { width: 180px; height: 1px; background: var(--line-2); overflow: hidden; }
+.curtain__bar i { display: block; height: 100%; background: var(--accent); transform: scaleX(0); transform-origin: left; }
+
+/* giant moving type */
+.bigtype { overflow: hidden; padding: clamp(36px, 5vw, 72px) 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.bigtype__track { display: flex; align-items: center; gap: clamp(28px, 4vw, 64px); width: max-content; white-space: nowrap; font-size: clamp(54px, 9vw, 150px); font-weight: 500; letter-spacing: -.045em; line-height: 1; font-stretch: 88%; color: var(--ink); }
+.bigtype__track span:nth-of-type(even) { color: transparent; -webkit-text-stroke: 1px rgba(238,242,250,.35); }
+.bigtype__track i { flex: 0 0 auto; width: .16em; height: .16em; background: var(--accent); }
+
+/* expanding LEO frame */
+.motion .bleed--expand { min-height: 100vh; }
+.motion .bleed--expand .bleed__img { inset: 0; }
+.motion .bleed--expand .wrap, .motion .bleed--expand .bleed__cap { opacity: 0; }
+
+/* stacking cards */
+.stackx { display: grid; gap: 24px; }
+.stackx__card { position: sticky; top: 110px; display: grid; grid-template-columns: 1.2fr 1fr; min-height: min(72vh, 640px); background: linear-gradient(160deg, #0d1a33, #081225); border: 1px solid var(--line); overflow: hidden; transform-origin: 50% 0; }
+.stackx__card figure { margin: 0; overflow: hidden; }
+.stackx__card img { width: 100%; height: 100%; object-fit: cover; filter: saturate(.85); }
+.stackx__body { display: flex; flex-direction: column; justify-content: flex-end; padding: clamp(28px, 4vw, 64px); }
+.stackx__body span { font-size: 12px; letter-spacing: .2em; color: var(--accent); margin-bottom: auto; }
+.stackx__body h3 { font-size: clamp(34px, 3.6vw, 60px); letter-spacing: -.04em; margin-bottom: 18px; }
+.stackx__body p { color: var(--muted); max-width: 26em; }
+
+/* section index: rule draws in */
+.motion .index { border-top-color: transparent; position: relative; }
+.motion .index::before { content: ""; position: absolute; left: 0; right: 0; top: -1px; height: 1px; background: var(--line-2); transform: scaleX(var(--rule, 0)); transform-origin: left; }
+
+/* footer wordmark letters */
+.footer__word { display: flex; overflow: hidden; }
+.footer__word span { display: inline-block; }
+
+/* engines list (products) */
+.engines { border-top: 1px solid var(--line); }
+.engines li { display: grid; grid-template-columns: 1fr 2.2fr; gap: 24px; align-items: baseline; padding: 26px 0; border-bottom: 1px solid var(--line); }
+.engines b { font-size: clamp(26px, 2.6vw, 42px); font-weight: 500; letter-spacing: -.03em; color: var(--ink); }
+.engines span { color: var(--text); font-size: 17px; }
+
+/* tilt */
+.tilt { transform-style: preserve-3d; will-change: transform; }
+
+@media (max-width: 920px) {
+  .stackx__card { grid-template-columns: 1fr; grid-template-rows: 1fr auto; top: 84px; min-height: 76vh; }
+  .engines li { grid-template-columns: 1fr; gap: 6px; }
+}
+
+/* the motion layer drives these directly — no competing CSS transitions */
+.motion .hero__fade, .motion .hero .h1 .line > span, .motion .js-fill span, .motion .split .w > span { transition: none !important; }

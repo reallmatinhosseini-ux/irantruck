@@ -31,7 +31,13 @@
 </head>
 <body data-page="products">
   <a class="skip" href="#main">Skip to content</a>
-  <div class="curtain" aria-hidden="true"><img src="images/logo-crop.png" alt=""></div>
+  <div class="curtain" aria-hidden="true">
+    <div class="curtain__inner">
+      <img src="images/logo-crop.png" alt="" class="curtain__logo">
+      <p class="curtain__word"><span>I</span><span>R</span><span>A</span><span>N</span><span>&nbsp;</span><span>T</span><span>R</span><span>U</span><span>C</span><span>K</span></p>
+      <div class="curtain__bar"><i></i></div>
+    </div>
+  </div>
   <div class="cursor" aria-hidden="true"><span>View</span></div>
 
   <header class="header">
@@ -72,17 +78,23 @@
     <section class="sec sec--soft" id="catalogue">
       <div class="wrap">
         <div class="head head--split">
-          <div><p class="eyebrow reveal">LEO parts catalogue</p><h2 class="h2 split">Search by part number or engine.</h2></div>
-          <p class="lead reveal">22 published LEO part numbers with OEM cross-references and applications. Click any row to enquire.</p>
+          <div><p class="eyebrow reveal">Applications</p><h2 class="h2 split">Engines we supply parts for.</h2></div>
+          <p class="lead reveal">LEO cylinder kits and piston rings for the heavy-truck engines most common on Iran’s roads — diesel and CNG. Send us your engine or part number and we will confirm the right part.</p>
         </div>
-        <div class="cat-tool reveal" data-catalog></div>
+        <ul class="engines">
+          <li class="reveal"><b>Weichai</b><span>WP10 · WP12 · WP13 · D12 — diesel &amp; CNG</span></li>
+          <li class="reveal"><b>Sinotruk</b><span>HOWO · Sitrak — MC11 · MC13 · T12 CNG</span></li>
+          <li class="reveal"><b>Shacman</b><span>X3000 · Shaanxi WP10 · ISM11</span></li>
+          <li class="reveal"><b>FAW</b><span>J6 · CA6DM2</span></li>
+        </ul>
+        <div class="reveal" style="margin-top:44px;display:flex;gap:12px;flex-wrap:wrap"><a href="contact.html" class="btn btn--accent btn--lg">Request a part<svg viewBox="0 0 16 16"><path d="M1 8h13M9 3l5 5-5 5"/></svg></a><a href="https://wa.me/989155072143" target="_blank" rel="noopener" class="btn btn--line btn--lg">Send a photo on WhatsApp</a></div>
       </div>
     </section>
 
     <section class="sec">
       <div class="wrap catalog">
         <nav class="cat-nav" aria-label="Categories">
-          <a href="#catalogue">Parts catalogue</a>
+          <a href="#catalogue">Applications</a>
           <a href="#engine">Engine components</a>
           <a href="#brakes">Brakes</a>
           <a href="#suspension">Suspension</a>
@@ -101,7 +113,7 @@
               <div>
                 <span class="product__tag">LEO · Engine</span>
                 <h4>Cylinder Combination</h4>
-                <p>A matched set of cylinder liners, pistons, piston pins and rings — supplied together for a complete, reliable engine rebuild. 15 LEO part numbers for Weichai, HOWO, Sitrak, Shaanxi and FAW engines.</p>
+                <p>A matched set of cylinder liners, pistons, piston pins and rings — supplied together for a complete, reliable engine rebuild. Available for Weichai, HOWO, Sitrak, Shaanxi and FAW engines.</p>
                 <ul class="chips"><li>Liners</li><li>Pistons</li><li>Piston pins</li><li>Ring sets</li></ul>
                 <p style="margin:26px 0 0"><a href="contact.html" class="link" data-product="Cylinder Combination">Enquire about this product<svg viewBox="0 0 16 16"><path d="M1 8h13M9 3l5 5-5 5"/></svg></a></p>
               </div>
@@ -111,7 +123,7 @@
               <div>
                 <span class="product__tag">Engine</span>
                 <h4>Piston Rings</h4>
-                <p>Precision ring sets engineered for compression, oil control and long service life. 7 LEO part numbers, including CNG applications.</p>
+                <p>Precision ring sets engineered for compression, oil control and long service life. Including CNG applications.</p>
                 <ul class="chips"><li>Compression rings</li><li>Oil control rings</li></ul>
                 <p style="margin:26px 0 0"><a href="contact.html" class="link" data-product="Piston Rings">Enquire about this product<svg viewBox="0 0 16 16"><path d="M1 8h13M9 3l5 5-5 5"/></svg></a></p>
               </div>
@@ -210,7 +222,7 @@
         </ul>
       </div>
     </div>
-    <div class="footer__word" aria-hidden="true">Iran Truck</div>
+    <div class="footer__word" aria-hidden="true"><span>I</span><span>r</span><span>a</span><span>n</span><span>&nbsp;</span><span>T</span><span>r</span><span>u</span><span>c</span><span>k</span></div>
     <div class="footer__bottom">
       <div class="wrap">
         <span>© <span class="js-year">2026</span> Iran Truck Trading Group. All rights reserved.</span>
@@ -226,7 +238,6 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
-  <script src="js/catalog.js"></script>
   <script src="js/main.js"></script>
   <script src="js/motion.js"></script>
 </body>
