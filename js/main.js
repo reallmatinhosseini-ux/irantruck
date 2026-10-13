@@ -219,6 +219,83 @@
     if (fromHash()) setTimeout(() => range.scrollIntoView(), 50); else apply("all", false);
   }
 
+  /* Quick view: open a part in a panel, step through the range */
+  const cards = $$(".lp");
+  if (cards.length) {
+    const qv = document.createElement("div");
+    qv.className = "qv"; qv.hidden = true;
+    qv.setAttribute("role", "dialog"); qv.setAttribute("aria-modal", "true"); qv.setAttribute("aria-label", "Product details");
+    qv.innerHTML = `<div class="qv__backdrop"></div>
+      <div class="qv__panel">
+        <button type="button" class="qv__close" aria-label="Close"><svg viewBox="0 0 16 16"><path d="M3 3l10 10M13 3L3 13"/></svg></button>
+        <div class="qv__media"><img alt=""></div>
+        <div class="qv__body">
+          <span class="qv__cat"></span>
+          <h3 class="qv__name"></h3>
+          <p class="qv__text">A genuine LEO part, supplied in Iran through the official representative. Tell us your engine or vehicle — our team will confirm fit, availability and price.</p>
+          <ul class="qv__points"><li>Original LEO product</li><li>Official channel in Iran</li><li>Fit confirmed before you order</li></ul>
+          <div class="qv__actions">
+            <a class="btn btn--accent btn--lg qv__wa" target="_blank" rel="noopener">Ask on WhatsApp<svg viewBox="0 0 16 16"><path d="M1 8h13M9 3l5 5-5 5"/></svg></a>
+            <a class="btn btn--ghost btn--lg qv__mail" href="contact.html">Send an enquiry</a>
+          </div>
+          <div class="qv__nav"><button type="button" class="qv__prev" aria-label="Previous part"><svg viewBox="0 0 16 16"><path d="M15 8H2M7 3L2 8l5 5"/></svg></button><span class="qv__pos"></span><button type="button" class="qv__next" aria-label="Next part"><svg viewBox="0 0 16 16"><path d="M1 8h13M9 3l5 5-5 5"/></svg></button></div>
+        </div>
+      </div>`;
+    document.body.appendChild(qv);
+    const q = (s) => $(s, qv);
+    const img = q(".qv__media img");
+    let list = [], pos = 0, lastFocus = null;
+    const show = (dir) => {
+      const a = $("a", list[pos]);
+      const name = $("h3", a).textContent, cat = $(".lp__cat", a).textContent, src = $("img", a).getAttribute("src");
+      const fill = () => {
+        img.src = src; img.alt = "Genuine LEO " + name.toLowerCase();
+        q(".qv__name").textContent = name; q(".qv__cat").textContent = cat;
+        q(".qv__pos").textContent = `${String(pos + 1).padStart(2, "0")} / ${String(list.length).padStart(2, "0")}`;
+        q(".qv__wa").href = "https://wa.me/989155072143?text=" + encodeURIComponent(`Hello Iran Truck, I would like to ask about the genuine LEO ${name.toLowerCase()}.`);
+        q(".qv__mail").dataset.product = `${name} (LEO)`;
+      };
+      if (window.gsap && dir) {
+        gsap.timeline()
+          .to([img, q(".qv__name"), q(".qv__cat")], { x: -40 * dir, autoAlpha: 0, duration: 0.22, ease: "power2.in" })
+          .add(fill)
+          .fromTo(img, { x: 60 * dir, rotate: 4 * dir, autoAlpha: 0 }, { x: 0, rotate: 0, autoAlpha: 1, duration: 0.7, ease: "expo.out" })
+          .fromTo([q(".qv__cat"), q(".qv__name")], { x: 30 * dir, autoAlpha: 0 }, { x: 0, autoAlpha: 1, duration: 0.6, ease: "expo.out", stagger: 0.05 }, "<0.05");
+      } else fill();
+    };
+    const open = (li) => {
+      list = cards.filter((c) => !c.hidden); pos = Math.max(0, list.indexOf(li));
+      lastFocus = document.activeElement;
+      qv.hidden = false; root.classList.add("qv-open"); window.__lenis?.stop();
+      show(0);
+      if (window.gsap) {
+        gsap.fromTo(q(".qv__backdrop"), { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.5 });
+        gsap.fromTo(q(".qv__panel"), { y: 60, autoAlpha: 0, clipPath: "inset(8% 4% 8% 4%)" }, { y: 0, autoAlpha: 1, clipPath: "inset(0% 0% 0% 0%)", duration: 0.9, ease: "expo.out" });
+        gsap.fromTo(img, { scale: 0.7, rotate: -8, autoAlpha: 0 }, { scale: 1, rotate: 0, autoAlpha: 1, duration: 1.2, ease: "expo.out", delay: 0.1 });
+        gsap.fromTo(q(".qv__body").children, { y: 30, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 0.8, ease: "expo.out", stagger: 0.05, delay: 0.15 });
+      }
+      q(".qv__close").focus();
+    };
+    const close = () => {
+      const done = () => { qv.hidden = true; root.classList.remove("qv-open"); window.__lenis?.start(); lastFocus?.focus(); };
+      if (window.gsap) gsap.timeline({ onComplete: done }).to(q(".qv__panel"), { y: 40, autoAlpha: 0, duration: 0.35, ease: "power2.in" }).to(q(".qv__backdrop"), { autoAlpha: 0, duration: 0.3 }, "<0.1");
+      else done();
+    };
+    const go = (d) => { pos = (pos + d + list.length) % list.length; show(d); };
+    cards.forEach((li) => $("a", li).addEventListener("click", (e) => { if (e.metaKey || e.ctrlKey) return; e.preventDefault(); e.stopImmediatePropagation(); open(li); }, true));
+    q(".qv__backdrop").addEventListener("click", close);
+    q(".qv__close").addEventListener("click", close);
+    q(".qv__prev").addEventListener("click", () => go(-1));
+    q(".qv__next").addEventListener("click", () => go(1));
+    q(".qv__mail").addEventListener("click", () => { try { sessionStorage.setItem("itg-product", q(".qv__mail").dataset.product); } catch (e) {} });
+    addEventListener("keydown", (e) => {
+      if (qv.hidden) return;
+      if (e.key === "Escape") close();
+      if (e.key === "ArrowRight") go(1);
+      if (e.key === "ArrowLeft") go(-1);
+    });
+  }
+
   /* Product enquiry links prefill the contact form */
   $$("[data-product]").forEach((a) => a.addEventListener("click", () => {
     try { sessionStorage.setItem("itg-product", a.dataset.product); } catch (e) {}

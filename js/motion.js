@@ -26,6 +26,7 @@
   let lenis = null;
   if (window.Lenis) {
     lenis = new Lenis({ lerp: 0.08, smoothWheel: true });
+    window.__lenis = lenis;
     lenis.stop();
     lenis.on("scroll", ScrollTrigger.update);
     gsap.ticker.add((t) => lenis.raf(t * 1000));
@@ -238,6 +239,78 @@
     } });
   }
 
+  /* ---------- scroll progress line ---------- */
+  const bar = document.createElement("div");
+  bar.className = "progress"; bar.setAttribute("aria-hidden", "true");
+  document.body.appendChild(bar);
+  gsap.to(bar, { scaleX: 1, ease: "none", scrollTrigger: { start: 0, end: "max", scrub: 0.3 } });
+
+  /* ---------- LEO ring: scroll turns a 3D carousel of parts ---------- */
+  const orbit = $(".orbit");
+  if (orbit) {
+    const ring = $(".orbit__ring", orbit), items = $$(".orbit__item", orbit);
+    const nameEl = $(".orbit__name", orbit), catEl = $(".orbit__cat", orbit), countEl = $(".orbit__count b", orbit);
+    const n = items.length, step = 360 / n, rad = Math.PI / 180;
+    const state = { rot: 0 };
+    let R = 400, tilt = 0, tiltTo = 0, active = false, current = 0;
+    orbit.classList.add("is-3d");
+    const layout = () => {
+      const w = innerWidth, size = w < 700 ? 150 : Math.min(250, Math.max(190, w * 0.15));
+      orbit.style.setProperty("--item", size + "px");
+      R = Math.max(size * 1.7, Math.min(w * (w < 700 ? 0.5 : 0.4), 640));
+    };
+    layout(); addEventListener("resize", layout);
+    const render = () => {
+      tilt += (tiltTo - tilt) * 0.08;
+      ring.style.transform = `translateZ(${-R}px) rotateX(${-8 + tilt}deg) rotateY(${state.rot}deg)`;
+      items.forEach((it, i) => {
+        let a = (((i * step + state.rot) % 360) + 360) % 360; if (a > 180) a -= 360;
+        const k = Math.cos(a * rad);
+        const f = Math.max(0, k), sc = 0.62 + 0.68 * f * f * f;      // the part in front grows, the rest step back
+        it.style.transform = `rotateY(${i * step}deg) translateZ(${R}px) rotateY(${-(i * step + state.rot)}deg) rotateX(${8 - tilt}deg) scale(${sc.toFixed(3)})`;
+        it.style.opacity = (0.08 + 0.92 * Math.max(0, (k + 0.2) / 1.2)).toFixed(3);
+        it.style.setProperty("--b", (0.3 + 0.7 * Math.max(0, k)).toFixed(2));
+      });
+      const idx = ((Math.round(-state.rot / step) % n) + n) % n;
+      if (idx !== current) {
+        current = idx;
+        const it = items[idx];
+        gsap.timeline()
+          .to([catEl, nameEl], { yPercent: -100, autoAlpha: 0, duration: 0.2, ease: "power2.in" })
+          .add(() => { nameEl.textContent = it.dataset.name; catEl.textContent = it.dataset.cat; countEl.textContent = String(idx + 1).padStart(2, "0"); })
+          .fromTo([catEl, nameEl], { yPercent: 100, autoAlpha: 0 }, { yPercent: 0, autoAlpha: 1, duration: 0.5, ease: "expo.out", stagger: 0.05 });
+      }
+    };
+    render();
+    gsap.ticker.add(() => { if (active) render(); });
+    gsap.to(state, { rot: -(360 - step), ease: "none", scrollTrigger: {
+      trigger: orbit, start: "top top", end: () => "+=" + innerHeight * 2.4, pin: true, scrub: 1, anticipatePin: 1,
+    } });
+    new IntersectionObserver(([e]) => { active = e.isIntersecting; }, { rootMargin: "100px" }).observe(orbit);
+    orbit.addEventListener("pointermove", (e) => { tiltTo = (e.clientY / innerHeight - 0.5) * -10; });
+    orbit.addEventListener("pointerleave", () => { tiltTo = 0; });
+    items.forEach((it) => it.addEventListener("click", () => { location.href = "products.html#range"; }));
+  }
+
+  /* ---------- products hero: parts float, drift with the pointer ---------- */
+  const floats = $$(".phero__float span");
+  if (floats.length) {
+    gsap.from($$("img", $(".phero__float")), { y: 160, autoAlpha: 0, scale: 0.8, rotate: () => gsap.utils.random(-14, 14), duration: 1.8, ease: "expo.out", stagger: 0.09, delay: 0.5 });
+    floats.forEach((sp) => {
+      const img = $("img", sp), d = +sp.dataset.depth || 1;
+      gsap.to(img, { y: gsap.utils.random(-22, 22), rotation: gsap.utils.random(-5, 5), duration: gsap.utils.random(3.2, 5.2), ease: "sine.inOut", yoyo: true, repeat: -1, delay: 2 });
+      gsap.to(sp, { yPercent: -60 * d, ease: "none", scrollTrigger: { trigger: ".phero", start: "top top", end: "bottom top", scrub: true } });
+      if (fine) {
+        const qx = gsap.quickTo(sp, "x", { duration: 1.2, ease: "power3" }), qy = gsap.quickTo(sp, "y", { duration: 1.2, ease: "power3" });
+        addEventListener("mousemove", (e) => { qx((e.clientX / innerWidth - 0.5) * -60 * d); qy((e.clientY / innerHeight - 0.5) * -40 * d); });
+      }
+    });
+  }
+
+  /* ---------- LEO range cards rise in ---------- */
+  ScrollTrigger.batch(".lp", { start: "top 94%", once: true,
+    onEnter: (els) => gsap.fromTo(els.filter((e) => !e.hidden), { y: 70, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 1.1, ease: "expo.out", stagger: 0.06, overwrite: true }) });
+
   /* ---------- brand logos & footer wordmark ---------- */
   ScrollTrigger.batch(".brandwall img", {
     start: "top 92%",
@@ -255,7 +328,7 @@
       gsap.set(cur, { x: -100, y: -100 });
       addEventListener("mousemove", (e) => { x(e.clientX); y(e.clientY); });
       document.addEventListener("mouseover", (e) => {
-        const view = e.target.closest(".mosaic a, .strip figure, .film figure, .tile, .hs__card, .cgal figure, .stackx__card figure");
+        const view = e.target.closest(".lp a, .orbit__item, .mosaic a, .strip figure, .film figure, .tile, .hs__card, .cgal figure, .stackx__card figure");
         const link = e.target.closest("a, button, input, select, textarea, summary, label");
         cur.classList.toggle("is-view", !!view);
         cur.classList.toggle("is-link", !!link && !view);
@@ -266,6 +339,19 @@
       const my = gsap.quickTo(b, "y", { duration: 0.8, ease: "elastic.out(1, .4)" });
       b.addEventListener("mousemove", (e) => { const r = b.getBoundingClientRect(); mx((e.clientX - r.left - r.width / 2) * 0.25); my((e.clientY - r.top - r.height / 2) * 0.35); });
       b.addEventListener("mouseleave", () => { mx(0); my(0); });
+    });
+    // range cards: a soft light follows the pointer, the part tilts toward it
+    $$(".lp a").forEach((a) => {
+      const fig = $("figure", a);
+      const rx = gsap.quickTo(fig, "rotationX", { duration: 0.7, ease: "power3" });
+      const ry = gsap.quickTo(fig, "rotationY", { duration: 0.7, ease: "power3" });
+      gsap.set(fig, { transformPerspective: 700 });
+      a.addEventListener("mousemove", (e) => {
+        const r = a.getBoundingClientRect(), px = (e.clientX - r.left) / r.width, py = (e.clientY - r.top) / r.height;
+        a.style.setProperty("--mx", px * 100 + "%"); a.style.setProperty("--my", py * 100 + "%");
+        ry((px - 0.5) * 18); rx((0.5 - py) * 14);
+      });
+      a.addEventListener("mouseleave", () => { rx(0); ry(0); });
     });
     $$(".tilt, .tile__img, .product__img").forEach((el) => {
       const rx = gsap.quickTo(el, "rotationX", { duration: 0.6, ease: "power3" });
