@@ -185,6 +185,40 @@
     catLinks.forEach((a) => { const s = $(a.getAttribute("href")); if (s) io.observe(s); });
   }
 
+  /* LEO range: category filter, first rows shown until "Show the full range" */
+  const range = $(".range");
+  if (range) {
+    const items = $$(".lp", range), tabs = $$(".range__bar button", range);
+    const more = $(".range__more", range), note = $(".range__note", range);
+    const LIMIT = 16;
+    let expanded = false;
+    const alias = { accessories: "all", catalogue: "all" };
+    const apply = (cat, animate) => {
+      const match = items.filter((li) => cat === "all" || li.dataset.cat === cat);
+      const limited = cat === "all" && !expanded;
+      items.forEach((li) => { li.hidden = true; });
+      const shown = limited ? match.slice(0, LIMIT) : match;
+      shown.forEach((li) => { li.hidden = false; });
+      if (more) more.hidden = !limited;
+      tabs.forEach((t) => { const on = t.dataset.filter === cat; t.classList.toggle("is-active", on); t.setAttribute("aria-selected", on); });
+      if (note) note.textContent = `${match.length} part${match.length === 1 ? "" : "s"}`;
+      if (animate && window.gsap) gsap.fromTo(shown, { y: 40, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 0.8, ease: "expo.out", stagger: 0.03, overwrite: true });
+      if (window.ScrollTrigger) ScrollTrigger.refresh();
+    };
+    tabs.forEach((t) => t.addEventListener("click", () => {
+      apply(t.dataset.filter, true);
+      history.replaceState(null, "", t.dataset.filter === "all" ? "#range" : "#" + t.dataset.filter);
+    }));
+    if (more) $("button", more).addEventListener("click", () => { expanded = true; apply("all", false); gsap && gsap.fromTo(items.slice(LIMIT), { y: 40, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 0.8, ease: "expo.out", stagger: 0.015 }); });
+    const fromHash = () => {
+      const h = location.hash.slice(1);
+      const cat = alias[h] || h;
+      if (tabs.some((t) => t.dataset.filter === cat)) { apply(cat, false); return true; }
+      return false;
+    };
+    if (fromHash()) setTimeout(() => range.scrollIntoView(), 50); else apply("all", false);
+  }
+
   /* Product enquiry links prefill the contact form */
   $$("[data-product]").forEach((a) => a.addEventListener("click", () => {
     try { sessionStorage.setItem("itg-product", a.dataset.product); } catch (e) {}

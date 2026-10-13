@@ -720,3 +720,47 @@ html:not(.motion) .curtain { display: none; }
 .brandwall img.is-foton { max-width: 92%; max-height: 70%; }
 .brandwall img.is-foton { width: 50%; height: auto; max-height: none; }
 .brandwall img.is-word { width: 34%; height: auto; max-height: none; }
+
+/* ---------- genuine LEO range ---------- */
+.range__bar { position: sticky; top: var(--bar-top, 76px); transition: top .6s var(--ease-io); z-index: 5; display: flex; gap: 8px; overflow-x: auto; scrollbar-width: none; margin: 8px 0 18px; padding: 14px 0; background: var(--bg); border-bottom: 1px solid var(--line); }
+.range__bar::-webkit-scrollbar { display: none; }
+.range__bar button { flex: 0 0 auto; font: inherit; font-size: 14px; color: var(--muted); background: transparent; border: 1px solid var(--line-2); padding: 10px 16px; cursor: pointer; transition: color .3s, border-color .3s, background .3s; }
+.range__bar button sup { font-size: 10px; letter-spacing: .06em; color: var(--accent); margin-left: 2px; }
+.range__bar button:hover { color: var(--ink); border-color: var(--ink); }
+.range__bar button.is-active { color: var(--bg); background: var(--ink); border-color: var(--ink); }
+.range__bar button.is-active sup { color: var(--bg); }
+.range__note { font-size: 12px; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); margin-bottom: 22px; }
+.range__grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); }
+.lp { background: var(--bg); }
+.lp[hidden] { display: none; }
+.lp a { position: relative; display: flex; flex-direction: column; height: 100%; padding: 18px 22px 22px; color: var(--ink); overflow: hidden; }
+.lp a::before { content: ""; position: absolute; inset: 0; background: radial-gradient(70% 55% at 50% 40%, rgba(61,107,255,.16), transparent 70%); opacity: .55; transition: opacity .6s; }
+.lp figure { position: relative; margin: 0 0 18px; aspect-ratio: 1 / 1; display: grid; place-items: center; }
+.lp img { max-width: 84%; max-height: 84%; object-fit: contain; filter: drop-shadow(0 24px 28px rgba(0,0,0,.55)); transition: transform 1s var(--ease); }
+.lp__cat { position: relative; font-size: 10.5px; letter-spacing: .18em; text-transform: uppercase; color: var(--accent); }
+.lp h3 { position: relative; font-size: 18px; font-weight: 500; letter-spacing: -.01em; margin: 6px 0 0; }
+.lp__ask { position: absolute; right: 22px; bottom: 22px; display: inline-flex; align-items: center; gap: 8px; font-size: 13px; color: var(--ink); opacity: 0; transform: translateX(-8px); transition: opacity .4s, transform .5s var(--ease); }
+.lp__ask svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 1.5; }
+.lp a:hover::before { opacity: 1; }
+.lp a:hover img { transform: translateY(-8px) scale(1.05); }
+.lp a:hover .lp__ask { opacity: 1; transform: none; }
+.range__more { display: flex; justify-content: center; margin-top: 40px; }
+.range__more[hidden] { display: none; }
+@media (max-width: 1100px) { .range__grid { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 720px) {
+  .range__grid { grid-template-columns: 1fr 1fr; }
+  .range__bar { --bar-top: 64px; }
+  .lp a { padding: 12px 14px 16px; }
+  .lp h3 { font-size: 15px; }
+  .lp__ask { display: none; }
+}
+html:has(.header.is-hidden) .range__bar { top: 0; }
+/* home: LEO product strip */
+.film--leo figure { background: radial-gradient(70% 60% at 50% 45%, #13265a 0%, #0a1430 60%, #070e20 100%); aspect-ratio: 1 / 1; width: clamp(180px, 18vw, 270px); display: grid; place-items: center; border: 1px solid var(--line); }
+.film--leo img { width: 78%; height: 78%; object-fit: contain; filter: drop-shadow(0 18px 22px rgba(0,0,0,.55)); }
+.film--leo figcaption { position: absolute; left: 14px; bottom: 12px; font-size: 12px; color: var(--muted); letter-spacing: .02em; background: none; padding: 0; }
+.film--leo figure { position: relative; }
+.leo-strip__head { display: flex; justify-content: space-between; align-items: end; gap: 24px; margin-bottom: 30px; }
+.leo-strip__head .h3 { font-size: clamp(24px, 2.4vw, 36px); letter-spacing: -.03em; }
+.peek { width: 300px; height: 300px; margin: -150px 0 0 -150px; background: radial-gradient(70% 60% at 50% 45%, #16306e 0%, #0a1430 65%, #070e20 100%); border: 1px solid var(--line-2); }
+.peek img { object-fit: contain; padding: 26px; filter: drop-shadow(0 18px 22px rgba(0,0,0,.55)); }
