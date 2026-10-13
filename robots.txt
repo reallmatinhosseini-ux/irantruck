@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://reallmatinhosseini-ux.github.io/irantruck/sitemap.xml

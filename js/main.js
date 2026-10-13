@@ -252,7 +252,7 @@
         img.src = src; img.alt = "Genuine LEO " + name.toLowerCase();
         q(".qv__name").textContent = name; q(".qv__cat").textContent = cat;
         q(".qv__pos").textContent = `${String(pos + 1).padStart(2, "0")} / ${String(list.length).padStart(2, "0")}`;
-        q(".qv__wa").href = "https://wa.me/989155072143?text=" + encodeURIComponent(`Hello Iran Truck, I would like to ask about the genuine LEO ${name.toLowerCase()}.`);
+        q(".qv__wa").href = "https://wa.me/989155072143?text=" + encodeURIComponent(`Hello Iran Truck Trading Group, I would like to ask about the genuine LEO ${name.toLowerCase()}.`);
         q(".qv__mail").dataset.product = `${name} (LEO)`;
       };
       if (window.gsap && dir) {

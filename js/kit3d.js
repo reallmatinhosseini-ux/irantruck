@@ -1,5 +1,5 @@
 /* ==========================================================
-   Iran Truck — 3D cylinder kit (liner, piston, pin, rings)
+   Iran Truck Trading Group — 3D cylinder kit (liner, piston, pin, rings)
    Built procedurally with three.js. Scroll explodes the kit,
    the mouse turns it. Falls back to the product photo when
    WebGL or motion is unavailable.

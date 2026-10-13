@@ -5,13 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{{title}}</title>
   <meta name="description" content="{{description}}">
-  <meta name="theme-color" content="#08090b">
+  <meta name="theme-color" content="#050a14">
+  <link rel="canonical" href="{{site}}{{path}}">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Iran Truck Trading Group">
   <meta property="og:title" content="{{title}}">
   <meta property="og:description" content="{{description}}">
-  <meta property="og:image" content="images/team-expo.jpg">
-  <link rel="icon" href="images/logo-crop.png">
+  <meta property="og:url" content="{{site}}{{path}}">
+  <meta property="og:image" content="{{site}}images/og.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="64x64" href="images/favicon-64.png">
+  <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wdth,wght@75..100,400..700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
@@ -27,7 +34,7 @@
     })(document.documentElement);
   </script>
   <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"Organization","name":"Iran Truck Trading Group","url":"https://iran-truck.com/","logo":"https://iran-truck.com/images/logo-crop.png","email":"info@iran-truck.com","telephone":"+98 51 3392 1186","address":{"@type":"PostalAddress","streetAddress":"No. 42, Pisheh 18th Street, Torogh Industrial Zone","addressLocality":"Mashhad","postalCode":"9165919142","addressCountry":"IR"}}
+  {"@context":"https://schema.org","@type":"AutoPartsStore","name":"Iran Truck Trading Group","description":"Genuine heavy-truck spare parts. Official representative of LEO in Iran.","url":"{{site}}","logo":"{{site}}images/icon-512.png","image":"{{site}}images/og.jpg","email":"info@iran-truck.com","telephone":"+98 51 3392 1186","address":{"@type":"PostalAddress","streetAddress":"No. 42, Pisheh 18th Street, Torogh Industrial Zone","addressLocality":"Mashhad","postalCode":"9165919142","addressCountry":"IR"},"openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],"opens":"09:00","closes":"17:00"}],"sameAs":["https://www.instagram.com/irantrucktradinggroup/"]}
   </script>
 </head>
 <body data-page="{{page}}">
@@ -35,7 +42,7 @@
   <div class="curtain" aria-hidden="true">
     <div class="curtain__inner">
       <img src="images/logo-crop.png" alt="" class="curtain__logo">
-      <p class="curtain__word"><span>I</span><span>R</span><span>A</span><span>N</span><span>&nbsp;</span><span>T</span><span>R</span><span>U</span><span>C</span><span>K</span></p>
+      <p class="curtain__word"><b class="row"><span>I</span><span>R</span><span>A</span><span>N</span><span>&nbsp;</span><span>T</span><span>R</span><span>U</span><span>C</span><span>K</span></b><b class="row"><span>T</span><span>R</span><span>A</span><span>D</span><span>I</span><span>N</span><span>G</span><span>&nbsp;</span><span>G</span><span>R</span><span>O</span><span>U</span><span>P</span></b></p>
       <div class="curtain__bar"><i></i></div>
     </div>
   </div>
@@ -45,7 +52,7 @@
     <div class="wrap">
       <a href="index.html" class="brand" aria-label="Iran Truck Trading Group — Home">
         <img src="images/logo-crop.png" alt="" width="50" height="38">
-        <span class="brand__text"><strong>IRAN TRUCK</strong><small>Trading Group</small></span>
+        <span class="brand__text"><strong>Iran Truck</strong><strong>Trading Group</strong></span>
       </a>
       <nav class="nav" aria-label="Main">
         <a href="about.html" data-nav="about">Company</a>
