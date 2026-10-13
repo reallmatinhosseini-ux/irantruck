@@ -838,3 +838,6 @@ html:has(.header.is-hidden) .range__bar { top: 0; }
   .qv__media { min-height: 42vh; }
   .qv__media img { max-height: 34vh; }
 }
+/* hero film: cool navy grade so the daylight footage sits in the dark theme */
+.hero__media video { filter: saturate(.75) contrast(1.05) brightness(.82); }
+.hero__media::before { content: ""; position: absolute; inset: 0; z-index: 1; background: linear-gradient(180deg, rgba(5,10,24,.35), rgba(8,20,60,.25) 45%, rgba(5,10,20,.55)); mix-blend-mode: multiply; pointer-events: none; }
