@@ -841,3 +841,24 @@ html:has(.header.is-hidden) .range__bar { top: 0; }
 /* hero film: cool navy grade so the daylight footage sits in the dark theme */
 .hero__media video { filter: saturate(.75) contrast(1.05) brightness(.82); }
 .hero__media::before { content: ""; position: absolute; inset: 0; z-index: 1; background: linear-gradient(180deg, rgba(5,10,24,.35), rgba(8,20,60,.25) 45%, rgba(5,10,20,.55)); mix-blend-mode: multiply; pointer-events: none; }
+
+/* ---------- editorial serif accents ---------- */
+.h1 em, .h2 em, .h3 em, .orbit__name em { font-family: "Instrument Serif", "Times New Roman", serif; font-style: italic; font-weight: 400; letter-spacing: -.01em; font-size: 1.08em; line-height: .9; color: #dfe6ff; }
+.cta .h2 em { color: inherit; }
+
+/* ---------- live Mashhad status ---------- */
+.live { white-space: nowrap; }
+.live[hidden] { display: none; }
+.live time { font-variant-numeric: tabular-nums; color: var(--ink); }
+.live__s { display: inline-flex; align-items: center; gap: 8px; margin-left: 10px; }
+.live__s i { width: 7px; height: 7px; border-radius: 50%; background: var(--muted); }
+.live.is-open .live__s i { background: #3ddc84; box-shadow: 0 0 0 0 rgba(61,220,132,.6); animation: livepulse 2.2s infinite; }
+@keyframes livepulse { 0% { box-shadow: 0 0 0 0 rgba(61,220,132,.55); } 70% { box-shadow: 0 0 0 9px rgba(61,220,132,0); } 100% { box-shadow: 0 0 0 0 rgba(61,220,132,0); } }
+.cinfo .live { display: block; margin-top: 10px; font-size: 14px; color: var(--muted); }
+.cinfo .live__s { margin-left: 8px; }
+@media (max-width: 720px) { .hero__kicker .live { display: block; margin-top: 8px; } .hero__kicker .live .sep { display: none; } .live { white-space: normal; } .live__s { margin-left: 6px; } }
+
+/* ---------- film grain ---------- */
+body::after { content: ""; position: fixed; inset: -50%; z-index: 95; pointer-events: none; opacity: .055; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .9 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); animation: grain 1.2s steps(5) infinite; }
+@keyframes grain { 0% { transform: translate(0,0); } 20% { transform: translate(-4%,3%); } 40% { transform: translate(3%,-5%); } 60% { transform: translate(-6%,-2%); } 80% { transform: translate(5%,4%); } 100% { transform: translate(0,0); } }
+@media (prefers-reduced-motion: reduce) { body::after { animation: none; } }

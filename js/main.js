@@ -296,6 +296,24 @@
     });
   }
 
+  /* Live Mashhad time and opening status (every day, 9:00–17:00) */
+  const lives = $$("[data-live]");
+  if (lives.length && window.Intl) {
+    const fmt = new Intl.DateTimeFormat("en-GB", { timeZone: "Asia/Tehran", hour: "2-digit", minute: "2-digit", hour12: false });
+    const tick = () => {
+      const t = fmt.format(new Date()), [h, m] = t.split(":").map(Number), mins = h * 60 + m;
+      const open = mins >= 540 && mins < 1020;
+      const note = open ? `Open now · until 17:00` : `Closed · opens ${mins < 540 ? "today" : "tomorrow"} at 9:00`;
+      lives.forEach((el) => {
+        el.hidden = false;
+        $("time", el).textContent = t;
+        el.classList.toggle("is-open", open);
+        $(".live__s > span", el).textContent = note;
+      });
+    };
+    tick(); setInterval(tick, 20000);
+  }
+
   /* Product enquiry links prefill the contact form */
   $$("[data-product]").forEach((a) => a.addEventListener("click", () => {
     try { sessionStorage.setItem("itg-product", a.dataset.product); } catch (e) {}
