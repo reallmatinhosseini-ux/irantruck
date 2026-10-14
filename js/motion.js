@@ -255,7 +255,7 @@
     let R = 400, tilt = 0, tiltTo = 0, active = false, current = 0;
     orbit.classList.add("is-3d");
     const layout = () => {
-      const w = innerWidth, size = w < 700 ? 150 : Math.min(250, Math.max(190, w * 0.15));
+      const w = innerWidth, size = w < 700 ? Math.min(170, w * 0.42) : Math.min(250, Math.max(190, w * 0.15));
       orbit.style.setProperty("--item", size + "px");
       R = Math.max(size * 1.7, Math.min(w * (w < 700 ? 0.5 : 0.4), 640));
     };
@@ -268,7 +268,10 @@
         const k = Math.cos(a * rad);
         const f = Math.max(0, k), sc = 0.62 + 0.68 * f * f * f;      // the part in front grows, the rest step back
         it.style.transform = `rotateY(${i * step}deg) translateZ(${R}px) rotateY(${-(i * step + state.rot)}deg) rotateX(${8 - tilt}deg) scale(${sc.toFixed(3)})`;
-        it.style.opacity = (0.08 + 0.92 * Math.max(0, (k + 0.2) / 1.2)).toFixed(3);
+        const cut = innerWidth < 700 ? 0.55 : 0.15;                  // phones show only the front three
+        const vis = Math.max(0, (k - cut) / (1 - cut));
+        it.style.opacity = Math.pow(vis, 1.4).toFixed(3);
+        it.style.visibility = vis > 0.01 ? "visible" : "hidden";
         it.style.setProperty("--b", (0.3 + 0.7 * Math.max(0, k)).toFixed(2));
       });
       const idx = ((Math.round(-state.rot / step) % n) + n) % n;

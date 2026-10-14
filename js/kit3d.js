@@ -133,7 +133,10 @@ function build() {
         e.copy(c); e.x += side * 1.2;
         v.copy(e).project(camera);
       }
-      const x = (v.x * 0.5 + 0.5) * w + side * 18, y = (-v.y * 0.5 + 0.5) * h;
+      const lw = el.offsetWidth || 120;
+      let x = (v.x * 0.5 + 0.5) * w + side * 18;
+      x = side < 0 ? Math.max(lw + 8, x) : Math.min(w - lw - 8, x);          // never leave the stage
+      const y = Math.min(h - 16, Math.max(16, (-v.y * 0.5 + 0.5) * h));
       el.style.transform = `translate(${x}px, ${y}px) translate(${side < 0 ? "-100%" : "0"}, -50%)`;
       el.classList.toggle("is-left", side < 0);
       el.classList.toggle("is-on", smooth > (key === "liner" || key === "piston" ? 0.3 : 0.55));
