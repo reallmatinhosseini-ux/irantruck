@@ -890,3 +890,4 @@ body::after { content: ""; position: fixed; inset: -50%; z-index: 95; pointer-ev
 }
 @media (max-width: 720px) { .hero__kicker .sep-d { display: none; } }
 .mnav a.btn { color: var(--bg); border-bottom: 0; }
+.visit__img img[src*="store-team"], .strip img[src*="store-team"], .phero__bg img[src*="store-team"] { object-position: 50% 62%; }
