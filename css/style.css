@@ -890,3 +890,4 @@ body::after { content: ""; position: fixed; inset: -50%; z-index: 95; pointer-ev
 }
 @media (max-width: 720px) { .hero__kicker .sep-d { display: none; } }
 .mnav a.btn { color: var(--bg); border-bottom: 0; }
+.visit__img img[src*="office"], .strip img[src*="office"], .phero__bg img[src*="office"] { object-position: 50% 18%; }
