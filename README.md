@@ -16,3 +16,5 @@ The generated pages are committed, so any static host (GitHub Pages) serves them
 Stock photography (`images/st-*`, `images/lx-*`) is from Unsplash (Unsplash License); `media/hero.mp4` is Mixkit clip 52434, “Transport trucks gliding over black asphalt road among arid vegetation” (Mixkit License).
 
 Brand logos (`images/brands/`) are the manufacturers' trademarks, sourced from Wikimedia Commons / Wikipedia and recoloured for a dark background; they indicate compatibility only. Part photography in `images/parts/` is from Unsplash (Unsplash License). LEO product photos in `images/leo/` and the studio shots in `images/studio/` are cut out from the LEO product catalogue supplied by Iran Truck Trading Group.
+
+Engine photos in `images/studio/engine-*` are cut out from "Weichai WP 12 truck engine" photographs by Spielvogel on Wikimedia Commons (CC0).
