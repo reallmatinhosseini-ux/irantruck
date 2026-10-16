@@ -895,3 +895,24 @@ body::after { content: ""; position: fixed; inset: -50%; z-index: 95; pointer-ev
 /* home company photo: show the whole team */
 .company .company__img:has(img[src*="team-expo"]) { aspect-ratio: 4 / 3; }
 .hs__card img[src*="studio/"] { width: 100%; margin-left: 0; transform: none !important; object-fit: cover; object-position: 50% 48%; }
+.company__img img[src*="team-expo"] { height: 100%; margin: 0; object-position: 50% 50%; }
+
+/* ---------- photo review fixes ---------- */
+/* photo strip: wide team photos get the wide columns, lower strip so 4:3 photos keep everyone in frame */
+.strip { grid-template-columns: 2.4fr 1fr 1.25fr 1.45fr; height: clamp(300px, 31vw, 460px); }
+.strip img[src*="team-expo"] { object-position: 50% 45%; }
+.strip img[src*="team-office"] { object-position: 50% 62%; }
+.strip img[src*="factory"] { object-position: 55% 85%; }
+@media (max-width: 720px) {
+  .strip { grid-template-columns: 1fr; gap: 10px; padding: 0 var(--pad); height: auto; }
+  .strip figure { aspect-ratio: 4 / 3; }
+  .strip figcaption { font-size: 12px; padding: 8px 12px; }
+  /* full-bleed photo sections: photo on top, words underneath — nothing written over faces */
+  .bleed { display: block; min-height: 0; background: var(--bg); }
+  .bleed .bleed__img { position: relative; inset: auto; aspect-ratio: 4 / 3; }
+  .bleed .bleed__img img { height: 100%; width: 100%; object-fit: cover; object-position: 50% 40%; }
+  .bleed::after { display: none; }
+  .bleed .wrap { padding-top: 28px; padding-bottom: 56px; display: block; }
+  .bleed .wrap > * + * { margin-top: 18px; }
+  .bleed__cap { position: absolute; top: 12px; left: 12px; right: auto; z-index: 2; font-size: 11px; background: rgba(5,10,20,.75); padding: 6px 10px; }
+}

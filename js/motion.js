@@ -170,7 +170,7 @@
   }
 
   /* ---------- photo parallax everywhere ---------- */
-  $$(".mosaic img, .strip img, .company__img img, .visit__img img, .cgal img").forEach((img) => {
+  $$(".mosaic img, .strip img, .company__img img:not([src*="team-expo"]), .visit__img img, .cgal img").forEach((img) => {
     img.style.height = "116%"; img.style.marginTop = "-8%";
     gsap.fromTo(img, { yPercent: -6 }, { yPercent: 6, ease: "none", scrollTrigger: { trigger: img.parentElement, start: "top bottom", end: "bottom top", scrub: true } });
   });
